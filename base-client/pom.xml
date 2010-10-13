@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>es.emergya</groupId>
+		<artifactId>${projectname}</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<groupId>es.emergya</groupId>
+	<artifactId>client</artifactId>
+	<name>client</name>
+	<version>1.0-SNAPSHOT</version>
+	<description>${projectname} Client</description>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>${source.compilation.level}</source>
+						<target>${source.compilation.level}</target>
+						<verbose>true</verbose>
+						<executable>javac</executable>
+						<fork>true</fork>
+						<compilerArguments>
+							<encoding>${project.build.sourceEncoding}</encoding>
+							<verbose />
+						</compilerArguments>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>findbugs-maven-plugin</artifactId>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${source.compilation.level}</source>
+					<target>${source.compilation.level}</target>
+					<verbose>true</verbose>
+					<executable>javac</executable>
+					<fork>true</fork>
+					<compilerArguments>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<verbose />
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>${default.long.encoding}</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/classes/es/emergya/ui</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources/es/emergya/ui</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-resources-conf</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}/conf</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources/conf</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-resources-raiz</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources/</directory>
+									<includes>
+										<include>*.properties</include>
+										<include>*.xml</include>
+									</includes>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<!--<index>true</index> -->
+						<manifest>
+							<addDefaultImplementationEntries>true
+                        </addDefaultImplementationEntries>
+							<mainClass>${mainClass}</mainClass>
+							<packageName>es.emergya.cliente</packageName>
+							<classpathPrefix>lib/</classpathPrefix>
+							<addClasspath>true</addClasspath>
+						</manifest>
+						<manifestEntries>
+							<Class-Path>.</Class-Path>
+							<mode>development</mode>
+							<url>${pom.url}</url>
+							<SplashScreen-Image>images/splash.gif</SplashScreen-Image>
+							<Implementation-Build>${buildNumber}</Implementation-Build>
+						</manifestEntries>
+					</archive>
+					<excludes>
+						<exclude>conf/*.properties</exclude>
+						<exclude>jdbc.properties</exclude>
+						<exclude>applicationContext-resources.xml</exclude>
+						<exclude>conf/*.xml</exclude>
+						<excludes>.svn/**</excludes>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<!-- <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> 
+						</descriptorRefs> -->
+					<descriptors>
+						<descriptor>src/main/assembly/dep.xml</descriptor>
+					</descriptors>
+
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+
+				<configuration>
+					<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+					<xmlOutput>true</xmlOutput>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<releases>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<id>Emergya nexus</id>
+			<name>Emergya nexus</name>
+			<url>http://gis.emergya.info/nexus/content/groups/public
+        </url>
+		</repository>
+		<repository>
+			<releases />
+			<snapshots />
+			<id>Codehaus Snapshots</id>
+			<name>Codehaus Snapshots</name>
+			<url>http://snapshots.repository.codehaus.org/</url>
+		</repository>
+		<repository>
+			<id>ibiblio</id>
+			<name>Ibiblio - the public's library and digital archive</name>
+			<url>http://www.ibiblio.org/maven2</url>
+		</repository>
+		<repository>
+			<id>jboss</id>
+			<name>Jboss reposirory</name>
+			<url>http://repository.jboss.com/maven2/</url>
+		</repository>
+		<repository>
+			<id>atlassian</id>
+			<name>Atlassian repository</name>
+			<url>http://repository.atlassian.com/maven2</url>
+		</repository>
+		<repository>
+			<id>osgeo</id>
+			<name>Open Source Geospatial Foundation Repository</name>
+			<url>http://download.osgeo.org/webdav/geotools/</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots />
+			<id>h2</id>
+			<name>h2</name>
+			<url>http://hsql.sourceforge.net/m2-repo/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<releases />
+			<snapshots />
+			<id>Codehaus Snapshots</id>
+			<name>Codehaus Snapshots</name>
+			<url>http://snapshots.repository.codehaus.org/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<dependencies>
+		<!-- Librerias de mapas (JOSM) -->
+		<dependency>
+			<groupId>org.openstreetmap</groupId>
+			<artifactId>josm</artifactId>
+			<version>1669</version>
+		</dependency>
+		<dependency>
+			<groupId>org.josm</groupId>
+			<artifactId>wms-plugin</artifactId>
+			<version>15961</version>
+		</dependency>
+		<!-- Cliente servicio web (axis2) -->
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-kernel</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-adb</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ws.security</groupId>
+			<artifactId>wss4j</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+		<!-- Pruebas (junit) -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- parent and children -->
+		<dependency>
+			<groupId>${pom.parent.groupId}</groupId>
+			<artifactId>core</artifactId>
+			<version>${pom.parent.version}</version>
+		</dependency>
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.appfuse</groupId>
+			<artifactId>appfuse-service</artifactId>
+			<version>${appfuse.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		<!-- GeoTools -->
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt2-main</artifactId>
+			<version>2.5-M1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.geotools</groupId>
+			<artifactId>gt2-epsg-hsql</artifactId>
+			<version>2.5-M1</version>
+		</dependency>
+		<!-- SwingX -->
+		<dependency>
+			<groupId>org.swinglabs</groupId>
+			<artifactId>swingx</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<!-- WMS -->
+		<dependency>
+			<groupId>gvsig.org</groupId>
+			<artifactId>libRemoteServices</artifactId>
+			<version>1.9</version>
+		</dependency>
+		<dependency>
+			<groupId>xmlpull</groupId>
+			<artifactId>xmlpull</artifactId>
+			<version>1.1.3.4d_b4_min</version>
+		</dependency>
+		<dependency>
+			<groupId>gvsig.legacy</groupId>
+			<artifactId>kxml2</artifactId>
+			<version>gvsig</version>
+		</dependency>
+	</dependencies>
+	<reporting>
+		<plugins>
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<configLocation>checkstyle-eclipse.xml</configLocation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.0-SNAPSHOT</version>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+					<xmlOutput>true</xmlOutput>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<targetJdk>${source.compilation.level}</targetJdk>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<profiles>
+		<profile>
+			<id>mobile</id>
+			<properties>
+				<mainClass>es.emergya.cliente.Mobile</mainClass>
+				<host>localhost</host>
+				<jdbc.url><![CDATA[jdbc:postgresql://${host}/${databaseName}]]></jdbc.url>
+				<jdbc.url.property>jdbc:postgresql://${host}/${databaseName}</jdbc.url.property>
+				<url.webservices>http://${host}:8080/webservices/services/Service</url.webservices>
+			</properties>
+		</profile>
+	</profiles>
+	<properties>
+		<!-- Application settings -->
+		<mainClass>es.emergya.cliente.Main</mainClass>
+	</properties>
+</project>

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- Estado de las incidencias -->
+    <table name="estado_incidencias">
+        <column>id</column>
+        <column>identificador</column>
+        <row>
+            <value description="id">1</value>
+            <value description="identificador">Pendiente de Acuse</value>
+        </row>
+        <row>
+            <value description="id">2</value>
+            <value description="identificador">Avisado</value>
+        </row>
+        <row>
+            <value description="id">3</value>
+            <value description="identificador">En Camino</value>
+        </row>
+        <row>
+            <value description="id">4</value>
+            <value description="identificador">En el lugar</value>
+        </row>
+        <row>
+            <value description="id">5</value>
+            <value description="identificador">Finalizada actuación</value>
+        </row>
+        <row>
+            <value description="id">6</value>
+            <value description="identificador">Cerrada</value>
+        </row>
+
+    </table>
+
+    <!-- Estado de los recursos -->
+    <table name="estado_recursos">
+        <column>id</column>
+        <column>identificador</column>
+        <row>
+            <value description="id">1</value>
+            <value description="identificador">Disponible</value>
+        </row>
+        <row>
+            <value description="id">2</value>
+            <value description="identificador">Avisado</value>
+        </row>
+        <row>
+            <value description="id">3</value>
+            <value description="identificador">En Camino</value>
+        </row>
+        <row>
+            <value description="id">4</value>
+            <value description="identificador">En el Lugar</value>
+        </row>
+    </table>
+    <table name="bandeja_entrada">
+        <column>x_bandeja_entrada</column>
+        <column>origen</column>
+        <column>datagrama_tetra</column>
+        <row>
+            <value description="x_bandeja_entrada">0</value>
+            <value description="origen">08000002</value>
+            <value description="datagrama_tetra">|31||</value>
+            <value description="procesado">false</value>
+        </row>
+    </table>
+    <table name="bandeja_salida">
+        <column>x_bandeja</column>
+        <column>destino</column>
+        <column>datagrama_tetra</column>
+        <column>prioridad</column>
+        <column>tipo</column>
+        <row>
+            <value description="x_bandeja">0</value>
+            <value description="destino">08000002</value>
+            <value description="datagrama_tetra">texto</value>
+            <value description="prioridad">1</value>
+            <value description="tipo">2</value>
+        </row>
+    </table>
+    <table name="capas_informacion">
+        <column>x_capa_informacion</column>
+        <column>nombre</column>
+        <column>url</column>
+        <column>orden</column>
+        <row>
+            <value description="x_capa_informacion">0</value>
+            <value description="nombre">capa de informacion</value>
+            <value description="url">http://google.es</value>
+            <value description="orden">0</value>
+        </row>
+        <row>
+            <value description="x_capa_informacion">1</value>
+            <value description="nombre">capa 1</value>
+            <value description="url">http://emergya.info</value>
+            <value description="orden">1</value>
+        </row>
+        <row>
+            <value description="x_capa_informacion">2</value>
+            <value description="nombre">capa 2</value>
+            <value description="url">http://emergya.es</value>
+            <value description="orden">2</value>
+        </row>
+        <row>
+            <value description="x_capa_informacion">3</value>
+            <value description="nombre">PNOA</value>
+            <value description="url">http://www.idee.es/wms/PNOA/PNOA?SRS=EPSG:4326&amp;VERSION=1.1.1&amp;SERVICE=PNOA&amp;FORMAT=PNG&amp;TRANSPARENT=TRUE&amp;REQUEST=GETMAP&amp;LAYERS=pnoa&amp;STYLES=default</value>
+            <value description="orden">3</value>
+            <value description="base">true</value>
+        </row>
+        <row>
+            <value description="x_capa_informacion">4</value>
+            <value description="nombre">Catastro</value>
+            <value description="url">http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?REQUEST=GetMap&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;WIDTH=256&amp;HEIGHT=256&amp;LAYERS=Catastro&amp;TRANSPARENT=TRUE&amp;FORMAT=image/png&amp;SRS=EPSG:4326&amp;STYLES=Default</value>
+            <value description="orden">4</value>
+        </row>
+    </table>
+    <table name="roles">
+        <column>x_rol</column>
+        <column>nombre</column>
+        <row>
+            <value description="x_rol">0</value>
+            <value description="nombre">rol</value>
+        </row>
+    </table>
+    <table name="usuarios">
+        <column>x_usuarios</column>
+        <column>nombre_usuario</column>
+        <column>password</column>
+        <column>fk_roles</column>
+        <column>administrador</column>
+        <column>habilitado</column>
+        <row>
+            <value description="x_usuarios">0</value>
+            <value description="nombre_usuario">emergya</value>
+            <value description="password">e1671797c52e15f763380b45e841ec32</value>
+            <value description="fk_roles">0</value>
+            <value description="administrador">true</value>
+            <value description="habilitado">true</value>
+        </row>
+        <row>
+            <value description="x_usuarios">1</value>
+            <value description="nombre_usuario">usuario</value>
+            <value description="password">e1671797c52e15f763380b45e841ec32</value>
+            <value description="fk_roles">0</value>
+            <value description="administrador">false</value>
+            <value description="habilitado">true</value>
+        </row>
+        <row>
+            <value description="x_usuarios">2</value>
+            <value description="nombre_usuario">admin1</value>
+            <value description="password">e00cf25ad42683b3df678c61f42c6bda</value>
+            <value description="fk_roles">0</value>
+            <value description="administrador">true</value>
+            <value description="habilitado">true</value>
+        </row>
+        <row>
+            <value description="x_usuarios">3</value>
+            <value description="nombre_usuario">noadmin1</value>
+            <value description="password">83fb5fa0e176789630d286a67cf19264</value>
+            <value description="fk_roles">0</value>
+            <value description="administrador">false</value>
+            <value description="habilitado">true</value>
+        </row>
+        <row>
+            <value description="x_usuarios">4</value>
+            <value description="nombre_usuario">nohabilitado</value>
+            <value description="password">6c9ea8cc115f16433b8984ca09ff9c26</value>
+            <value description="fk_roles">0</value>
+            <value description="administrador">false</value>
+            <value description="habilitado">false</value>
+        </row>
+
+    </table>
+    <table name="usuarios_x_capas_informacion">
+        <column>fk_capa_informacion</column>
+        <column>fk_usuarios</column>
+        <column>visible_historico</column>
+        <column>visible_gps</column>
+        <row>
+            <value description="fk_capa_informacion">0</value>
+            <value description="fk_usuarios">0</value>
+            <value description="visible_historico">true</value>
+            <value description="visible_gps">true</value>
+        </row>
+    </table>
+    <table name="flotas">
+        <column>x_flota</column>
+        <column>nombre</column>
+        <column>juego_iconos</column>
+        <row>
+            <value description="x_flota">0</value>
+            <value description="nombre">flota</value>
+            <value description="juego_iconos">flota/Subflota1</value>
+        </row>
+        <row>
+            <value description="x_flota">1</value>
+            <value description="nombre">flota 1</value>
+            <value description="juego_iconos">flota/Subflota0</value>
+        </row>
+        <row>
+            <value description="x_flota">2</value>
+            <value description="nombre">flota 2</value>
+            <value description="juego_iconos">flota/Subflota0</value>
+        </row>
+        <row>
+            <value description="x_flota">3</value>
+            <value description="nombre">flota 3</value>
+            <value description="juego_iconos">flota/Subflota0</value>
+        </row>
+    </table>
+    <table name="historico_gps">
+        <column>x_historico</column>
+        <column>pos_x</column>
+        <column>pos_y</column>
+        <column>marca_temporal</column>
+        <column>recurso</column>
+        <column>subflota</column>
+        <row>
+            <value description="x_historico">0</value>
+            <value description="pos_x">0</value>
+            <value description="pos_y">0</value>
+            <value description="marca_temporal">2010-04-27 11:56:00</value>
+            <value description="recurso">recurso 0</value>
+            <value description="subflota">flota</value>
+
+
+        </row>
+    </table>
+    <table name="street">
+        <column>x_street</column>
+        <row>
+            <value description="x_street">0</value>
+        </row>
+    </table>
+    <table name="portales">
+        <column>x_portales</column>
+        <row>
+            <value description="x_portales">0</value>
+        </row>
+    </table>
+    <table name="incidencias">
+        <column>x_incidencia</column>
+        <column>referencia_interna</column>
+        <column>fk_portales</column>
+        <column>fk_street</column>
+        <column>fk_estado</column>
+        <row>
+            <value description="x_incidencia">0</value>
+            <value description="referencia_interna">0</value>
+            <value description="fk_portales">0</value>
+            <value description="fk_street">0</value>
+            <value description="fk_estado">1</value>
+        </row>
+    </table>
+    <table name="patrullas">
+        <column>x_patrulla</column>
+        <column>nombre</column>
+        <row>
+            <value description="x_patrulla">0</value>
+            <value description="nombre">patrulla</value>
+        </row>
+        <row>
+            <value description="x_patrulla">1</value>
+            <value description="nombre">patrulla 1</value>
+        </row>
+        <row>
+            <value description="x_patrulla">2</value>
+            <value description="nombre">patrulla 2</value>
+        </row>
+        <row>
+            <value description="x_patrulla">3</value>
+            <value description="nombre">patrulla 3</value>
+        </row>
+    </table>
+    <table name="recursos">
+        <column>x_recurso</column>
+        <column>identificador</column>
+        <column>nombre</column>
+        <column>flota_x_flota</column>
+        <column>incidencia_x_incidencia</column>
+        <column>patrulla_x_patrulla</column>
+        <column>tipo</column>
+        <column>dispositivo</column>
+        <column>fk_estado</column>
+        <row>
+            <value description="x_recurso">0</value>
+            <value description="identificador">recurso 0</value>
+            <value description="nombre">recurso 0</value>
+            <value description="flota_x_flota">0</value>
+            <value description="incidencia_x_incidencia">0</value>
+            <value description="patrulla_x_patrulla">0</value>
+            <value description="tipo">per</value>
+            <value description="dispositivo">08000002</value>
+            <value description="fk_estado">1</value>
+        </row>
+        <row>
+            <value description="x_recurso">1</value>
+            <value description="identificador">recurso 1</value>
+            <value description="nombre">recurso 1</value>
+            <value description="flota_x_flota">0</value>
+            <value description="incidencia_x_incidencia">0</value>
+            <value description="patrulla_x_patrulla">1</value>
+            <value description="tipo">veh</value>
+            <value description="dispositivo">8765</value>
+            <value description="fk_estado">1</value>
+        </row>
+        <row>
+            <value description="x_recurso">2</value>
+            <value description="identificador">recurso 2</value>
+            <value description="nombre">recurso 2</value>
+            <value description="flota_x_flota">1</value>
+            <value description="incidencia_x_incidencia">0</value>
+            <value description="patrulla_x_patrulla">1</value>
+            <value description="tipo">veh</value>
+            <value description="dispositivo">2345</value>
+            <value description="fk_estado">1</value>
+        </row>
+        <row>
+            <value description="x_recurso">3</value>
+            <value description="identificador"></value>
+            <value description="nombre">recurso 3</value>
+            <value description="flota_x_flota">1</value>
+            <value description="incidencia_x_incidencia">0</value>
+            <value description="patrulla_x_patrulla">0</value>
+            <value description="tipo">per</value>
+            <value description="dispositivo">293784</value>
+            <value description="fk_estado">1</value>
+        </row>
+        <row>
+            <value description="x_recurso">4</value>
+            <value description="identificador">recurso 4</value>
+            <value description="nombre">recurso 4</value>
+            <null />
+            <null />
+            <null />
+            <value description="tipo">veh</value>
+            <value description="dispositivo">5</value>
+            <value description="fk_estado">1</value>
+        </row>
+    </table>
+    <table name="zonas">
+        <column>x_zona</column>
+        <column>nombre</column>
+        <row>
+            <value description="x_zona">0</value>
+            <value description="nombre">zona</value>
+        </row>
+    </table>
+    <table name="capa">
+        <column>x_capa</column>
+        <column>fk_capas_informacion</column>
+        <column>orden</column>
+        <row>
+            <value description="x_capa">0</value>
+            <value description="fk_capas_informacion">0</value>
+            <value description="orden">0</value>
+        </row>
+    </table>
+    <table name="tipo_mensaje">
+        <column>x_tipo_mensaje</column>
+        <column>nombre</column>
+        <column>codigo</column>
+        <column>prioridad</column>
+        <column>tipo_tetra</column>
+        <row>
+            <value>16</value>
+            <value>POS_ACTUAL</value>
+            <value>16</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>30</value>
+            <value>ASOCIACION_PATRULLAS</value>
+            <value>30</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>31</value>
+            <value>SDS</value>
+            <value>31</value>
+            <value>0</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>32</value>
+            <value>SOLICITUD_GPS</value>
+            <value>32</value>
+            <value>0</value>
+            <value>3</value>
+        </row>
+    </table>
+
+
+
+</dataset>

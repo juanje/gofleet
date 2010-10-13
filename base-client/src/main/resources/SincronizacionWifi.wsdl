@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="askForLost">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="idsPerdidos" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="askForLostResponse">
+    <complexType>
+    	<sequence>
+    		<element maxOccurs="unbounded" minOccurs="0" name="mensajesPerdidos" type="string">
+    		</element>
+    	</sequence>
+    </complexType>
+   </element>
+
+   <element name="updateIssiVehicle">
+   	<complexType>
+   		<sequence>
+   			<element name="in" type="string"></element>
+   		</sequence>
+   	</complexType>
+   </element>
+   <element name="updateIssiVehicleResponse">
+   	<complexType>
+   		<sequence>
+   			<element name="out" type="string" maxOccurs="unbounded" minOccurs="0"></element>
+   		</sequence>
+   	</complexType>
+   </element>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="askForLostRequest">
+    <wsdl:part name="parameters" element="impl:askForLost">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="askForLostResponse">
+    <wsdl:part name="parameters" element="impl:askForLostResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateIssiVehicleRequest">
+  	<wsdl:part name="parameters" element="impl:updateIssiVehicle"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateIssiVehicleResponse">
+  	<wsdl:part name="parameters" element="impl:updateIssiVehicleResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SincronizacionWifi">
+    <wsdl:operation name="askForLost">
+      <wsdl:input name="askForLostRequest" message="impl:askForLostRequest">
+    </wsdl:input>
+      <wsdl:output name="askForLostResponse" message="impl:askForLostResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateIssiVehicle">
+    	<wsdl:input message="impl:updateIssiVehicleRequest" name="updateIssiVehicleRequest">
+    </wsdl:input>
+    	<wsdl:output message="impl:updateIssiVehicleResponse" name="updateIssiVehicleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SincronizacionWifiSoapBinding"
+  	type="impl:SincronizacionWifi">
+  	<wsdlsoap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="updateIssiVehicle">
+  		<wsdlsoap:operation
+  			soapAction="http://DefaultNamespace/updateIssiVehicle" />
+  		<wsdl:input name="updateIssiVehicleRequest">
+  			<wsdlsoap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output name="updateIssiVehicleResponse">
+  			<wsdlsoap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="askForLost">
+  		<wsdlsoap:operation
+  			soapAction="http://DefaultNamespace/askForLost" />
+  		<wsdl:input name="askForLostRequest">
+  			<wsdlsoap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output name="askForLostResponse">
+  			<wsdlsoap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  
+  <wsdl:service name="SincronizacionWifiService">
+    <wsdl:port name="SincronizacionWifi" binding="impl:SincronizacionWifiSoapBinding">
+      <wsdlsoap:address location="http://localhost:8080/sincronizacion/services/SincronizacionWifi"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

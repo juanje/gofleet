@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : actualizarIncidencias.xml
+    Created on : 5 de mayo de 2010, 17:19
+    Author     : jlrodriguez
+    Description:
+        Ejemplo de xml enviado por Eurocop para actualizar el estado de las
+        incidencias.
+-->
+<Incidencias xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Incidencia>
+        <ReferenciaInterna>156564</ReferenciaInterna>
+        <ReferenciaHumana>1/2011</ReferenciaHumana>
+        <Motivo>Accidente vial sin heridos</Motivo>
+        <Prioridad>2</Prioridad>
+        <FechaCreacion>2011-12-20T11:18:14+01:00</FechaCreacion>
+
+        <Gestor>Cabina 1</Gestor>
+        <Direccion>
+            <Siglas/>
+            <NombreVia>Lepanto</NombreVia>
+            <Numero>23</Numero>
+            <Extension>5º A</Extension>
+        </Direccion>
+
+        <PuntoReferencia>Junto al bar de pepito</PuntoReferencia>
+        <Estado>Pendiente de Acuse</Estado>
+    </Incidencia>
+    <Incidencia>
+        <ReferenciaInterna>5634734728</ReferenciaInterna>
+        <ReferenciaHumana>2/2011</ReferenciaHumana>
+        <Motivo>Accidente vial con heridos</Motivo>
+
+        <Prioridad>1</Prioridad>
+        <FechaCreacion>2011-12-20T11:18:24+01:00</FechaCreacion>
+        <Gestor>Cabina2</Gestor>
+        <Direccion>
+            <Siglas>CL</Siglas>
+            <NombreVia>Logroño</NombreVia>
+
+            <Numero>53</Numero>
+            <Extension/>
+        </Direccion>
+        <PuntoReferencia/>
+        <Estado>Avisado</Estado>
+    </Incidencia>
+    <Incidencia>
+        <ReferenciaInterna>9653628</ReferenciaInterna>
+
+        <ReferenciaHumana>3/2011</ReferenciaHumana>
+        <Motivo>Robo</Motivo>
+        <Prioridad>1</Prioridad>
+        <FechaCreacion>2010-02-16T13:01:07+01:00</FechaCreacion>
+        <Gestor>Cabina 1</Gestor>
+        <Direccion>
+
+            <Siglas>AVDA</Siglas>
+            <NombreVia>Real</NombreVia>
+            <Numero>125 bis</Numero>
+            <Extension>bl 4 esc 5 piso 3 letra A</Extension>
+        </Direccion>
+        <PuntoReferencia/>
+        <Estado>Finalizada actuación</Estado>
+
+        <Resultado>Detencion</Resultado>
+        <FechaCierre>2010-02-16T13:51:17+01:00</FechaCierre>
+    </Incidencia>
+    <Incidencia>
+        <ReferenciaInterna>4</ReferenciaInterna>
+
+        <ReferenciaHumana>4/2011</ReferenciaHumana>
+        <Motivo>Robo</Motivo>
+        <Prioridad>1</Prioridad>
+        <FechaCreacion>2010-02-16T13:01:07+01:00</FechaCreacion>
+        <Gestor>Cabina 1</Gestor>
+        <Direccion>
+
+            <Siglas>AVDA</Siglas>
+            <NombreVia>ANTONIO MEDRANo</NombreVia>
+            <Numero>10</Numero>
+            <Extension>bl 4 esc 5 piso 3 letra A</Extension>
+        </Direccion>
+        <PuntoReferencia/>
+        <Estado>Avisado</Estado>
+
+        <Resultado>Detencion</Resultado>
+        <FechaCierre>2010-02-16T13:51:17+01:00</FechaCierre>
+    </Incidencia>
+    <Incidencia>
+        <ReferenciaInterna>5</ReferenciaInterna>
+
+        <ReferenciaHumana>5/2011</ReferenciaHumana>
+        <Motivo>Robo</Motivo>
+        <Prioridad>1</Prioridad>
+        <FechaCreacion>2010-02-16T13:01:07+01:00</FechaCreacion>
+        <Gestor>Cabina 1</Gestor>
+        <Direccion>
+
+            <Siglas>AVDA</Siglas>
+            <NombreVia>PRÍNCIPES DE ASTURIAS</NombreVia>
+            <Numero>20</Numero>
+            <Extension>bl 4 esc 5 piso 3 letra A</Extension>
+        </Direccion>
+        <PuntoReferencia/>
+        <Estado>Finalizada actuación</Estado>
+
+        <Resultado>Detencion</Resultado>
+        <FechaCierre>2010-02-16T13:51:17+01:00</FechaCierre>
+    </Incidencia>
+    <Incidencia>
+        <ReferenciaInterna>6</ReferenciaInterna>
+        <!-- Etiqueta extra. Debe ser ignorada por el parseador-->
+        <etiquetaExtra>extra</etiquetaExtra>
+
+        <ReferenciaHumana>6/2011</ReferenciaHumana>
+        <Motivo>Robo</Motivo>
+        <Prioridad>1</Prioridad>
+        <FechaCreacion>2010-02-16T13:01:07+01:00</FechaCreacion>
+        <Gestor>Cabina 1</Gestor>
+        <Direccion>
+            <!-- Etiqueta extra. Debe ser ignorada por el parseador-->
+            <etiquetaExtra>extra</etiquetaExtra>
+
+            <Siglas>AVDA</Siglas>
+            <NombreVia>Real</NombreVia>
+            <Numero>125 bis</Numero>
+            <Extension>bl 4 esc 5 piso 3 letra A</Extension>
+        </Direccion>
+        <PuntoReferencia/>
+        <Estado>Finalizada actuación</Estado>
+
+        <Resultado>Detencion</Resultado>
+        <FechaCierre>2010-02-16T13:51:17+01:00</FechaCierre>
+    </Incidencia>
+    <!--
+<Incidencia>
+                <ReferenciaInterna>7</ReferenciaInterna>
+
+                <ReferenciaHumana>7/2011</ReferenciaHumana>
+                <Motivo>Robo</Motivo>
+                <Prioridad>1</Prioridad>
+                <FechaCreacion>2010-02-16T13:01:07+01:00</FechaCreacion>
+                <Gestor>Cabina 1</Gestor>
+                <Direccion>
+
+                        <Siglas>AVDA</Siglas>
+                        <NombreVia>ALFAREROS</NombreVia>
+                        <Numero>12</Numero>
+                        <Extension>extensión alfareros</Extension>
+                </Direccion>
+                <PuntoReferencia/>
+                <Estado>Finalizada actuación</Estado>
+
+                <Resultado>Detencion</Resultado>
+                <FechaCierre>2010-02-16T13:51:17+01:00</FechaCierre>
+        </Incidencia>
+<Incidencia>
+                <ReferenciaInterna>8</ReferenciaInterna>
+
+                <ReferenciaHumana>8/2011</ReferenciaHumana>
+                <Motivo>Robo</Motivo>
+                <Prioridad>1</Prioridad>
+                <FechaCreacion>2010-02-16T13:01:07+01:00</FechaCreacion>
+                <Gestor>Cabina 1</Gestor>
+                <Direccion>
+
+                        <Siglas>AVDA</Siglas>
+                        <NombreVia>VILLADIEGO</NombreVia>
+                        <Numero>125</Numero>
+                        <Extension>extensión villadiego 125</Extension>
+                </Direccion>
+                <PuntoReferencia/>
+                <Estado>Finalizada actuación</Estado>
+
+                <Resultado>Detencion</Resultado>
+                <FechaCierre>2010-02-16T13:51:17+01:00</FechaCierre>
+    </Incidencia>-->
+</Incidencias>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+			http://www.springframework.org/schema/context
+           	http://www.springframework.org/schema/context/spring-context-2.5.xsd 
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-lazy-init="true">
+
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<bean id="bandejaEntradaHome" class="es.emergya.bbdd.dao.BandejaEntradaHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="bandejaSalidaHome" class="es.emergya.bbdd.dao.BandejaSalidaHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="capaInformacionHome" class="es.emergya.bbdd.dao.CapaInformacionHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="clienteConectadoHome" class="es.emergya.bbdd.dao.ClienteConectadoHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="configuracionHome" class="es.emergya.bbdd.dao.ConfiguracionHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="estadoIncidenciaHome" class="es.emergya.bbdd.dao.EstadoIncidenciaHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="flotaHome" class="es.emergya.bbdd.dao.FlotaHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="historicoGPSHome" class="es.emergya.bbdd.dao.HistoricoGPSHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="incidenciaHome" class="es.emergya.bbdd.dao.IncidenciaHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="patrullaHome" class="es.emergya.bbdd.dao.PatrullaHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="recursoHome" class="es.emergya.bbdd.dao.RecursoHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="rolHome" class="es.emergya.bbdd.dao.RolHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="routingHome" class="es.emergya.bbdd.dao.RoutingHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="streetHome" class="es.emergya.bbdd.dao.StreetHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="tipoMensajeHome" class="es.emergya.bbdd.dao.TipoMensajeHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="usuarioHome" class="es.emergya.bbdd.dao.UsuarioHome">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- Estadísticas -->
+	<bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="Hibernate:name=statistics">
+					<ref local="statisticsBean" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="statisticsBean" class="org.hibernate.jmx.StatisticsService">
+		<property name="statisticsEnabled">
+			<value>true</value>
+		</property>
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>

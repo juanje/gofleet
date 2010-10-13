@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+    <service name="Service">
+        <parameter name="ServiceClass">es.emergya.Service</parameter>
+        <operation name="loginEF">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+        <operation name="actualizaLoginEF">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+        <operation name="getRecursosEnPeriodo">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+        <operation name="getIncidenciasAbiertasEnPeriodo">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+        <operation name="getRutasRecursos">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+        <operation name="getUltimasPosiciones">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+        <operation name="getPosicionesIncidencias">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+        <operation name="getRutasRecursosFromBBDD">
+            <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+        </operation>
+    </service>
+
+
+
+</serviceGroup>

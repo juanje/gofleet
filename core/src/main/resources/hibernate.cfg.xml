@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<property name="hibernate.show_sql">false</property>
+
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.transaction.auto_close_session">true</property>
+		<property name="hibernate.connection.autocommit">true</property>
+
+		<mapping class="es.emergya.bbdd.bean.BandejaEntrada" />
+		<mapping class="es.emergya.bbdd.bean.BandejaSalida" />
+		<mapping class="es.emergya.bbdd.bean.Capa" />
+		<mapping class="es.emergya.bbdd.bean.CapaInformacion" />
+		<mapping class="es.emergya.bbdd.bean.CapaInformacionUsuario" />
+		<mapping class="es.emergya.bbdd.bean.CategoriaIncidencia" />
+		<mapping class="es.emergya.bbdd.bean.ClienteConectado" />
+		<mapping class="es.emergya.bbdd.bean.Configuracion" />
+		<mapping class="es.emergya.bbdd.bean.EstadoIncidencia" />
+		<mapping class="es.emergya.bbdd.bean.EstadoRecurso" />
+		<mapping class="es.emergya.bbdd.bean.Flota" />
+		<mapping class="es.emergya.bbdd.bean.HistoricoGPS" />
+		<mapping class="es.emergya.bbdd.bean.Incidencia" />
+		<mapping class="es.emergya.bbdd.bean.Patrulla" />
+		<mapping class="es.emergya.bbdd.bean.Recurso" />
+		<mapping class="es.emergya.bbdd.bean.Rol" />
+		<mapping class="es.emergya.bbdd.bean.Routing" />
+		<mapping class="es.emergya.bbdd.bean.TipoMensaje" />
+		<mapping class="es.emergya.bbdd.bean.Usuario" />
+	</session-factory>
+</hibernate-configuration>

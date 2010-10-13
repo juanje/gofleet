@@ -1,0 +1,69 @@
+Prerequisites
+=============
+
+As it is designed on Java, you can use the client on any platform which has a virtual machine. Of 
+course, a GNU/Linux based system would be better. 
+
+ * Server *
+  - Java (1.6+)
+  - PostgreSQL (8.1 or better)
+  - PostGIS (1.3 or better)
+  - PgRouting
+  
+ * WebService *
+  - Java (1.6+)
+  - Tomcat (1.5 or better)
+  - Same database as the server
+ 
+ * Desktop Client *
+  - Java (1.6+)
+ 
+ * Mobile Client *
+  - Java (1.6+)
+  - PostgreSQL (8.1 or better)
+  - PostGIS (1.3 or better)
+  - PgRouting
+  
+//TODO how to configure postgresql on the mobile client
+
+If you want to compile the code, you will need Maven.
+  
+Hardware Requirements
+=====================
+
+//TODO better
+
+As long as you can run PostgreSQL and Java... it should be enough. Of course, the better hardware,
+the better performance.
+
+
+How to INSTALL
+==============
+
+//TODO pre-compiled jars?
+
+We try to do it as simple as posible, so we use Maven. If you have Maven installed on your computer,
+you just need the source code. //TODO url svn?
+
+Configuration
+-------------
+
+Once you have the source code, you can configure your environment. The configuration file
+is the pom.xml file of the parent folder. There you can configure the parameters at the
+end of the file. The most important parameter is the 'host' parameter. You have to change
+it to the ip/server name of the database.
+ 
+To compile the mobile version, you have to execute maven with the "-P mobile" argument.
+You cannot compile a desktop and a mobile client at the same time.
+
+Compiling
+---------
+
+After configuring, you can compile it with a simple
+     'mvn package'
+on the //TODO {project.name} folder.
+
+//TODO mobile/desktop profile
+
+Once you have all the package done, you can find all the generated jars on the target 
+folder of every sub-project, as usual with maven. 

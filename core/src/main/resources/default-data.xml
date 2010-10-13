@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <table name="tipo_mensaje">
+        <column>x_tipo_mensaje</column>
+        <column>nombre</column>
+        <column>codigo</column>
+        <column>prioridad</column>
+        <column>tipo_tetra</column>
+        <row>
+            <value>16</value>
+            <value>POS_ACTUAL</value>
+            <value>16</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>30</value>
+            <value>ASOCIACION_PATRULLAS</value>
+            <value>30</value>
+            <value>0</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>31</value>
+            <value>SDS</value>
+            <value>31</value>
+            <value>0</value>
+            <value>2</value>
+        </row>
+        <row>
+            <value>32</value>
+            <value>SOLICITUD_GPS</value>
+            <value>32</value>
+            <value>0</value>
+            <value>3</value>
+        </row>
+    </table>
+    <table name="usuarios">
+        <column>x_usuarios</column>
+        <column>nombre_usuario</column>
+        <column>password</column>
+        <column>fk_roles</column>
+        <column>administrador</column>
+        <column>habilitado</column>
+        <row>
+            <value description="x_usuarios">0</value>
+            <value description="nombre_usuario">emergya</value>
+            <value description="password">e1671797c52e15f763380b45e841ec32</value>
+            <value description="fk_roles">0</value>
+            <value description="administrador">true</value>
+            <value description="habilitado">true</value>
+        </row>
+    </table>
+    
+    <!-- Estado de las incidencias -->
+    <table name="estado_incidencias">
+        <column>id</column>
+        <column>identificador</column>
+        <row>
+            <value description="id">1</value>
+            <value description="identificador">Pendiente de Acuse</value>
+        </row>
+        <row>
+            <value description="id">2</value>
+            <value description="identificador">Avisado</value>
+        </row>
+        <row>
+            <value description="id">3</value>
+            <value description="identificador">En Camino</value>
+        </row>
+        <row>
+            <value description="id">4</value>
+            <value description="identificador">En el lugar</value>
+        </row>
+        <row>
+            <value description="id">5</value>
+            <value description="identificador">Finalizada actuación</value>
+        </row>
+        <row>
+            <value description="id">6</value>
+            <value description="identificador">Cerrada</value>
+        </row>
+
+    </table>
+
+    <!-- Estado de los recursos -->
+    <table name="estado_recursos">
+        <column>id</column>
+        <column>identificador</column>
+        <row>
+            <value description="id">1</value>
+            <value description="identificador">Disponible</value>
+        </row>
+        <row>
+            <value description="id">2</value>
+            <value description="identificador">Avisado</value>
+        </row>
+        <row>
+            <value description="id">3</value>
+            <value description="identificador">En Camino</value>
+        </row>
+        <row>
+            <value description="id">4</value>
+            <value description="identificador">En el Lugar</value>
+        </row>
+    </table>
+</dataset>

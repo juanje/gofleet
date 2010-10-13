@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : actualizarIndicativos.xml
+    Created on : 7 de mayo de 2010, 12:11
+    Author     : jlrodriguez
+    Description:
+       Ejemplo para tests de actualizacion de indicativos
+-->
+
+<Recursos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Recurso>
+		<Nombre>A001</Nombre>
+		<Gestor>Cabina 1</Gestor>
+		<Estado>En Camino</Estado>
+		<ReferenciaAviso>156564</ReferenciaAviso>
+		<Funciones/>
+
+		<FechaCambio>2011-12-20T11:18:24+01:00</FechaCambio>
+	</Recurso>
+        <Recurso>
+            <Nombre>A002</Nombre>
+            <Gestor>Cabina 2</Gestor>
+            <Estado>En el Lugar</Estado>
+            <Funciones>Apoyo</Funciones>
+            <FechaCambio>2011-12-20T11:19:24+01:00</FechaCambio>
+            <!-- Etiqueta no esperada -->
+            <EtiquetaNoEsperada>conenito no esperado</EtiquetaNoEsperada>
+            <ReferenciaAviso>4</ReferenciaAviso>
+        </Recurso>
+	<Recurso>
+		<Nombre>A005</Nombre>
+		<Gestor>Cabina 1</Gestor>
+		<Estado>En el Lugar</Estado>
+		<ReferenciaAviso>12327424</ReferenciaAviso>
+
+		<Funciones>Toma de datos</Funciones>
+		<FechaCambio>2011-12-20T11:28:24+01:00</FechaCambio>
+	</Recurso>
+</Recursos>
