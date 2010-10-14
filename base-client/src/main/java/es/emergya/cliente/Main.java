@@ -229,7 +229,7 @@ public final class Main {
 				Main.createAndShowGUI();
 				CustomScheduler scheduler = new CustomScheduler();
 
-				scheduler.addJob(LOGIN_FREQUENCY, "loginJob", LoginJob.class);
+			//	scheduler.addJob(LOGIN_FREQUENCY, "loginJob", LoginJob.class);
 
 				scheduler.addJob(Main.UPDATE_MAPS_FREQUENCY, "updateMaps",
 						UpdateMapsJob.class);
