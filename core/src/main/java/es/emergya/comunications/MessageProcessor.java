@@ -36,7 +36,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.emergya.actions.BandejaEntradaAdmin;
+import es.emergya.actions.InboxAdmin;
 import es.emergya.bbdd.bean.BandejaEntrada;
 import es.emergya.bbdd.bean.TipoMensaje;
 import es.emergya.bbdd.dao.TipoMensajeHome;
@@ -98,7 +98,7 @@ public abstract class MessageProcessor {
 
 	private void save(BandejaEntrada entrada) {
 		entrada.setProcesado(true);
-		BandejaEntradaAdmin.saveOrUpdate(entrada);
+		InboxAdmin.saveOrUpdate(entrada);
 	}
 
 	@Transactional

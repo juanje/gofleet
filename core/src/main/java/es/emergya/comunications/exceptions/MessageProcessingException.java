@@ -36,7 +36,7 @@ import org.appfuse.dao.GenericDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.emergya.actions.BandejaEntradaAdmin;
+import es.emergya.actions.InboxAdmin;
 import es.emergya.bbdd.bean.BandejaEntrada;
 
 /**
@@ -78,7 +78,7 @@ public class MessageProcessingException extends Exception {
 	private void save(BandejaEntrada mensaje) {
 		if (mensaje != null) {
 			mensaje.setProcesado(true);
-			BandejaEntradaAdmin.saveOrUpdate(mensaje);
+			InboxAdmin.saveOrUpdate(mensaje);
 		}
 	}
 
