@@ -37,7 +37,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.emergya.actions.InboxAdmin;
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 
 /**
  * Exception related with the message processing
@@ -58,24 +58,24 @@ public class MessageProcessingException extends Exception {
 	public MessageProcessingException() {
 	}
 
-	private GenericDao<BandejaEntrada, Long> bandejaEntradaDAO;
+	private GenericDao<Inbox, Long> bandejaEntradaDAO;
 
 	@Autowired
 	public void setBandejaEntradaDAO(
-			GenericDao<BandejaEntrada, Long> bandejaEntradaDAO) {
+			GenericDao<Inbox, Long> bandejaEntradaDAO) {
 		this.bandejaEntradaDAO = bandejaEntradaDAO;
 	}
 
 	/**
 	 * @param arg0
 	 */
-	public MessageProcessingException(String arg0, BandejaEntrada mensaje) {
+	public MessageProcessingException(String arg0, Inbox mensaje) {
 		super(arg0);
 		save(mensaje);
 	}
 
 	@Transactional
-	private void save(BandejaEntrada mensaje) {
+	private void save(Inbox mensaje) {
 		if (mensaje != null) {
 			mensaje.setProcesado(true);
 			InboxAdmin.saveOrUpdate(mensaje);

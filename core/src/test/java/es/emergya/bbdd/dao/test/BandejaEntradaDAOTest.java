@@ -35,24 +35,24 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 
 public class BandejaEntradaDAOTest extends org.appfuse.dao.BaseDaoTestCase {
 
-	private GenericDao<BandejaEntrada, Long> bandejaEntradaDAO;
+	private GenericDao<Inbox, Long> bandejaEntradaDAO;
 
 	@Autowired
 	public void setBandejaEntradaDAO(
-			GenericDao<BandejaEntrada, Long> bandejaEntradaDAO) {
+			GenericDao<Inbox, Long> bandejaEntradaDAO) {
 		this.bandejaEntradaDAO = bandejaEntradaDAO;
 	}
 
 	@Test
 	@Transactional
 	public void testGetAll() throws Exception {
-		BandejaEntrada be = this.bandejaEntradaDAO.get(0l);
+		Inbox be = this.bandejaEntradaDAO.get(0l);
 		assertNotNull(be);
-		List<BandejaEntrada> bandejaEntrada = this.bandejaEntradaDAO.getAll();
+		List<Inbox> bandejaEntrada = this.bandejaEntradaDAO.getAll();
 		assertTrue(bandejaEntrada.size() >= 1);
 	}
 }

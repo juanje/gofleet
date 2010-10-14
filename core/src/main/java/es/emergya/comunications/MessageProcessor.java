@@ -37,7 +37,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.emergya.actions.InboxAdmin;
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 import es.emergya.bbdd.bean.TipoMensaje;
 import es.emergya.bbdd.dao.TipoMensajeHome;
 import es.emergya.comunications.exceptions.MessageProcessingException;
@@ -64,7 +64,7 @@ public abstract class MessageProcessor {
 	 * @return
 	 * @throws MessageProcessingException
 	 */
-	public void processingMessage(BandejaEntrada entrada)
+	public void processingMessage(Inbox entrada)
 			throws MessageProcessingException {
 
 		// Divide el datagram
@@ -96,13 +96,13 @@ public abstract class MessageProcessor {
 		save(entrada);
 	}
 
-	private void save(BandejaEntrada entrada) {
+	private void save(Inbox entrada) {
 		entrada.setProcesado(true);
 		InboxAdmin.saveOrUpdate(entrada);
 	}
 
 	@Transactional
-	private Integer getTipoMensaje(BandejaEntrada entrada, String[] campos) {
+	private Integer getTipoMensaje(Inbox entrada, String[] campos) {
 		TipoMensaje tipo = null;
 		try {
 			Integer codigo = Integer.parseInt(campos[1]);
@@ -125,7 +125,7 @@ public abstract class MessageProcessor {
 	 * @param campos
 	 * @param codeMessageType
 	 */
-	protected abstract void processMessage(BandejaEntrada entrada,
+	protected abstract void processMessage(Inbox entrada,
 			String[] campos, int codeMessageType)
 			throws MessageProcessingException;
 }

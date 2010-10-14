@@ -40,7 +40,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Patrulla;
 import es.emergya.bbdd.bean.Recurso;
@@ -57,7 +57,7 @@ public class MessageProcessorTest {
 		final Double y = new Double(42.349167);
 		final Double x = new Double(3.684722);
 		MessageProcessor mp = new MessageProcessor();
-		BandejaEntrada entrada = new BandejaEntrada();
+		Inbox entrada = new Inbox();
 		entrada.setDatagramaTetra("|16|" + y + ",N|" + x + ",W|1|");
 		entrada.setMarcaTemporal(Calendar.getInstance().getTime());
 		entrada.setOrigen("08000002");
@@ -83,7 +83,7 @@ public class MessageProcessorTest {
 		if (patrullas.size() > 0) {
 			String patrulla = patrullas.get(0).getNombre();
 			MessageProcessor mp = new MessageProcessor();
-			BandejaEntrada entrada = new BandejaEntrada();
+			Inbox entrada = new Inbox();
 			entrada.setDatagramaTetra("|30|" + patrulla + "|");
 			entrada.setMarcaTemporal(Calendar.getInstance().getTime());
 			entrada.setOrigen("08000002");
@@ -98,7 +98,7 @@ public class MessageProcessorTest {
 			throws MessageProcessingException {
 		String patrulla = "avkclf";
 		MessageProcessor mp = new MessageProcessor();
-		BandejaEntrada entrada = new BandejaEntrada();
+		Inbox entrada = new Inbox();
 		entrada.setDatagramaTetra("|30|" + patrulla + "|");
 		entrada.setMarcaTemporal(Calendar.getInstance().getTime());
 		entrada.setOrigen("08000002");

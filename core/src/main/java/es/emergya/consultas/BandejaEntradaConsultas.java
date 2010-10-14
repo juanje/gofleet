@@ -35,13 +35,13 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 import es.emergya.bbdd.dao.BandejaEntradaHome;
 import es.emergya.utils.MyBeanFactory;
 
 public class BandejaEntradaConsultas {
 
-    public static void processPosiconActual(BandejaEntrada entrada, Geometry geom) throws MessageProcessingException {
+    public static void processPosiconActual(Inbox entrada, Geometry geom) throws MessageProcessingException {
         bandejaEntradaHome.processPosicionActual(entrada, geom);
     }
 
@@ -57,7 +57,7 @@ public class BandejaEntradaConsultas {
 	static final Log log = LogFactory.getLog(BandejaEntradaConsultas.class);
 	private static BandejaEntradaHome bandejaEntradaHome;
 
-	public static List<BandejaEntrada> getNotProcessed() {
+	public static List<Inbox> getNotProcessed() {
 		return bandejaEntradaHome.getNotProcessed();
 	}
 }

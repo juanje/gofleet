@@ -54,7 +54,7 @@ import javax.swing.Timer;
 
 import org.apache.commons.logging.LogFactory;
 
-import es.emergya.bbdd.bean.BandejaSalida;
+import es.emergya.bbdd.bean.Outbox;
 import es.emergya.bbdd.bean.Recurso;
 import es.emergya.bbdd.bean.TipoMensaje;
 import es.emergya.cliente.constants.LogicConstants;
@@ -67,7 +67,7 @@ public class GPSDialog extends JFrame implements ActionListener {
 	private static final long serialVersionUID = -3236008715561683102L;
 	private static final org.apache.commons.logging.Log log = LogFactory
 			.getLog(GPSDialog.class);
-	private BandejaSalida last_bandejaSalida = null;
+	private Outbox last_bandejaSalida = null;
 	JButton actualizar;
 	Icon iconEnviando;
 	Icon iconTransparente;
@@ -237,7 +237,7 @@ public class GPSDialog extends JFrame implements ActionListener {
 		}
 	}
 
-	private BandejaSalida send() {
+	private Outbox send() {
 		TipoMensaje tmensaje = TipoMensajeConsultas
 				.getTipoByCode(es.emergya.utils.LogicConstants
 						.getInt("GPS", 32));
@@ -263,10 +263,10 @@ public class GPSDialog extends JFrame implements ActionListener {
 	}
 
 	class SolicitudGPSActionListener implements ActionListener {
-		private BandejaSalida b;
+		private Outbox b;
 		private Timer t;
 
-		public SolicitudGPSActionListener(BandejaSalida b) {
+		public SolicitudGPSActionListener(Outbox b) {
 			this.b = b;
 		}
 

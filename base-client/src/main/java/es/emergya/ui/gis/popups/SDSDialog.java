@@ -61,7 +61,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
-import es.emergya.bbdd.bean.BandejaSalida;
+import es.emergya.bbdd.bean.Outbox;
 import es.emergya.bbdd.bean.Recurso;
 import es.emergya.bbdd.bean.TipoMensaje;
 import es.emergya.cliente.constants.LogicConstants;
@@ -73,7 +73,7 @@ import es.emergya.ui.base.BasicWindow;
 public class SDSDialog extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 2956099114032301963L;
 	static int maxChars = LogicConstants.getInt("MAX_CARACTERES_POR_SDS");
-	private BandejaSalida bandejaSalida;
+	private Outbox bandejaSalida;
 	Recurso destino;
 	Icon iconEnviando;
 	Icon iconTransparente;
@@ -290,7 +290,7 @@ public class SDSDialog extends JFrame implements ActionListener {
 		}
 	}
 
-	private BandejaSalida send() {
+	private Outbox send() {
 		TipoMensaje tmensaje = TipoMensajeConsultas
 				.getTipoByCode(es.emergya.utils.LogicConstants
 						.getInt("SDS", 31));
@@ -316,9 +316,9 @@ public class SDSDialog extends JFrame implements ActionListener {
 
 	class SendActionListener implements ActionListener {
 		private Timer t = null;
-		private BandejaSalida b;
+		private Outbox b;
 
-		public SendActionListener(BandejaSalida b) {
+		public SendActionListener(Outbox b) {
 			this.b = b;
 		}
 

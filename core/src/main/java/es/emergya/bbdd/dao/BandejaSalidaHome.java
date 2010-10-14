@@ -33,18 +33,18 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.emergya.bbdd.bean.BandejaSalida;
+import es.emergya.bbdd.bean.Outbox;
 
 @Repository("bandejaSalidaHome")
-public class BandejaSalidaHome extends GenericDaoHibernate<BandejaSalida, Long> {
+public class BandejaSalidaHome extends GenericDaoHibernate<Outbox, Long> {
 
 	public BandejaSalidaHome() {
-		super(BandejaSalida.class);
+		super(Outbox.class);
 	}
 
 	@Transactional(readOnly = true, rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
 	@Override
-	public BandejaSalida get(Long id) {
+	public Outbox get(Long id) {
 		try {
 			return super.get(id);
 		} catch (Throwable t) {
@@ -54,7 +54,7 @@ public class BandejaSalidaHome extends GenericDaoHibernate<BandejaSalida, Long> 
 	}
 
 	@Transactional(readOnly = false, rollbackFor = Throwable.class, propagation = Propagation.REQUIRED)
-	public void delete(BandejaSalida b) {
+	public void delete(Outbox b) {
 		try {
 			b = get(b.getId());
 			if (b != null)

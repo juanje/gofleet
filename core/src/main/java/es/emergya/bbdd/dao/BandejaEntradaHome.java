@@ -44,7 +44,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Recurso;
 import es.emergya.bbdd.bean.notmapped.RecursoBean;
@@ -54,14 +54,14 @@ import es.emergya.consultas.RecursoConsultas;
 import java.math.BigDecimal;
 
 @Repository("bandejaEntradaHome")
-public class BandejaEntradaHome extends GenericDaoHibernate<BandejaEntrada, Long> {
+public class BandejaEntradaHome extends GenericDaoHibernate<Inbox, Long> {
 
     public BandejaEntradaHome() {
-        super(BandejaEntrada.class);
+        super(Inbox.class);
     }
 
     @Override
-    public BandejaEntrada get(Long id) {
+    public Inbox get(Long id) {
         try {
             return super.get(id);
         }
@@ -73,16 +73,16 @@ public class BandejaEntradaHome extends GenericDaoHibernate<BandejaEntrada, Long
 
     @SuppressWarnings("unchecked")
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = true, rollbackFor = Throwable.class)
-    public List<BandejaEntrada> getNotProcessed() {
+    public List<Inbox> getNotProcessed() {
         Session currentSession = getSession();
         currentSession.clear();
-        return (List<BandejaEntrada>) getSession().createCriteria(
-                BandejaEntrada.class).add(Restrictions.eq("procesado", false)).addOrder(Order.asc("marcaTemporal")).setResultTransformer(
+        return (List<Inbox>) getSession().createCriteria(
+                Inbox.class).add(Restrictions.eq("procesado", false)).addOrder(Order.asc("marcaTemporal")).setResultTransformer(
                 Criteria.DISTINCT_ROOT_ENTITY).list();
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false, rollbackFor = Throwable.class)
-    public boolean saveOrUpdate(BandejaEntrada b) {
+    public boolean saveOrUpdate(Inbox b) {
         Session currentSession = getSession();
         currentSession.flush();
         currentSession.saveOrUpdate(currentSession.merge(b));
@@ -91,7 +91,7 @@ public class BandejaEntradaHome extends GenericDaoHibernate<BandejaEntrada, Long
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = Throwable.class)
-    public void processPosicionActual(BandejaEntrada entrada, Geometry geom) throws MessageProcessingException {
+    public void processPosicionActual(Inbox entrada, Geometry geom) throws MessageProcessingException {
         HistoricoGPS historicoGPS = new HistoricoGPS();
         historicoGPS.setMarcaTemporal(entrada.getMarcaTemporal());
 

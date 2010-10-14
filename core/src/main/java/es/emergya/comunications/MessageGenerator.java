@@ -41,7 +41,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.emergya.bbdd.bean.BandejaSalida;
+import es.emergya.bbdd.bean.Outbox;
 import es.emergya.comunications.exceptions.MessageGeneratingException;
 import es.emergya.consultas.TipoMensajeConsultas;
 import es.emergya.utils.LogicConstants;
@@ -55,16 +55,16 @@ import es.emergya.utils.MyBeanFactory;
 public class MessageGenerator {
 
 	private static Log log = LogFactory.getLog(MessageGenerator.class);
-	private static GenericDao<BandejaSalida, Long> bandejaSalidaDAO;
+	private static GenericDao<Outbox, Long> bandejaSalidaDAO;
 
 	@Autowired
 	public static void setBandejaSalidaDAO(
-			GenericDao<BandejaSalida, Long> bandejaSalidaDAO) {
+			GenericDao<Outbox, Long> bandejaSalidaDAO) {
 		MessageGenerator.bandejaSalidaDAO = bandejaSalidaDAO;
 	}
 
 	static {
-		bandejaSalidaDAO = (GenericDao<BandejaSalida, Long>) MyBeanFactory
+		bandejaSalidaDAO = (GenericDao<Outbox, Long>) MyBeanFactory
 				.getBean("bandejaSalidaDAO");
 	}
 
@@ -77,7 +77,7 @@ public class MessageGenerator {
 	 * @return
 	 */
 	@Transactional(readOnly = false, rollbackFor = Throwable.class, propagation = Propagation.REQUIRES_NEW)
-	public static BandejaSalida sendMessage(Integer codigo, Integer tipo,
+	public static Outbox sendMessage(Integer codigo, Integer tipo,
 			Integer prioridad, String cuerpo, String destino)
 			throws MessageGeneratingException {
 
@@ -109,7 +109,7 @@ public class MessageGenerator {
 
 			String datagramaTetra = getDatagrama(codigo, tipo, cuerpo);
 
-			BandejaSalida out = new BandejaSalida();
+			Outbox out = new Outbox();
 			out.setMarcaTemporal(Calendar.getInstance().getTime());
 			out.setDatagramaTetra(datagramaTetra);
 			out.setPrioridad(prioridad);

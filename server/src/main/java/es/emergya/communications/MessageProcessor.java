@@ -44,7 +44,7 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 
 import es.emergya.actions.HistoricoGPSAdmin;
 import es.emergya.actions.RecursoAdmin;
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Patrulla;
 import es.emergya.bbdd.bean.Recurso;
@@ -70,11 +70,11 @@ public class MessageProcessor extends es.emergya.comunications.MessageProcessor 
     private static final int SDS_CODE = 31;
 
     /**
-     * @see es.emergya.comunications.MessageProcessor#processMessage(es.emergya.bbdd.bean.BandejaEntrada,
+     * @see es.emergya.comunications.MessageProcessor#processMessage(es.emergya.bbdd.bean.Inbox,
      *      java.lang.String[], int)
      */
     @Override
-    protected void processMessage(final BandejaEntrada entrada, final String[] campos,
+    protected void processMessage(final Inbox entrada, final String[] campos,
             int codeMessageType) throws MessageProcessingException {
         switch (codeMessageType) {
             case MessageProcessor.POS_ACTUAL_CODE:
@@ -87,7 +87,7 @@ public class MessageProcessor extends es.emergya.comunications.MessageProcessor 
         }
     }
 
-    private void processPOS_ACTUAL(final BandejaEntrada entrada, final String[] campos)
+    private void processPOS_ACTUAL(final Inbox entrada, final String[] campos)
             throws MessageProcessingException {
         /*
          * BODY = LATITUD | LONGITUD
@@ -185,7 +185,7 @@ public class MessageProcessor extends es.emergya.comunications.MessageProcessor 
         return p;
     }
 
-    private void processASOCIACION_PATRULLA(final BandejaEntrada entrada,
+    private void processASOCIACION_PATRULLA(final Inbox entrada,
             final String[] campos) throws MessageProcessingException {
         /*
          * BODY = PATRULLA
@@ -245,7 +245,7 @@ public class MessageProcessor extends es.emergya.comunications.MessageProcessor 
     }
 
     @Deprecated
-    private void processPOS_ACTUAL2(final BandejaEntrada entrada, final String[] campos)
+    private void processPOS_ACTUAL2(final Inbox entrada, final String[] campos)
             throws MessageProcessingException {
         log.debug("processPOS_ACTUAL2");
         final long time = System.currentTimeMillis();

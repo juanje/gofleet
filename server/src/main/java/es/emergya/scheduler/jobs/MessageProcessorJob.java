@@ -34,7 +34,7 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.StatefulJob;
 
-import es.emergya.bbdd.bean.BandejaEntrada;
+import es.emergya.bbdd.bean.Inbox;
 import es.emergya.communications.MessageProcessor;
 import es.emergya.consultas.BandejaEntradaConsultas;
 
@@ -54,7 +54,7 @@ public class MessageProcessorJob implements StatefulJob {
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
 		try {
 			MessageProcessor mp = new MessageProcessor();
-			for (BandejaEntrada ba : BandejaEntradaConsultas.getNotProcessed()) {
+			for (Inbox ba : BandejaEntradaConsultas.getNotProcessed()) {
 				try {
 					if (log.isDebugEnabled()) {
 						log.debug("Procesando mensaje " + ba);
