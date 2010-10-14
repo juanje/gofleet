@@ -262,12 +262,17 @@ public class BasicWindow {
 
 	/**
 	 * @see Authentication#isAuthenticated()
+         * @deprecated use isAuthenticated()
 	 * @return
 	 */
 	@Deprecated
 	public static boolean isAutenticated() {
 		return Authentication.isAuthenticated();
 	}
+
+        public static boolean isAuthenticated() {
+            return Authentication.isAuthenticated();
+        }
 
 	public static Image getIconImage() {
 		return ICON_IMAGE;

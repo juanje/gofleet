@@ -143,7 +143,7 @@ public class Message {
 	protected static void getNext() {
 		log.trace("getNext()");
 
-		if (!BasicWindow.isAutenticated())
+		if (!BasicWindow.isAuthenticated())
 			return;
 
 		try {
