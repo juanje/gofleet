@@ -75,7 +75,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.cliente.constants.LogicConstants;
 import es.emergya.ui.SpringUtilities;
 import es.emergya.ui.base.plugins.Option;
@@ -617,7 +617,7 @@ public class AdminPanel extends JPanel implements ActionListener {
 					for (int i = 0; i < data.length; i++) {
 						newData[i] = new Object[data[0].length + 1];
 						newData[i][0] = new Boolean(
-								Autenticacion.isAutenticated()
+								Authentication.isAuthenticated()
 										&& seleccion
 												.contains(data[i][columnToReselect - 1]));
 						for (int j = 0; j < data[i].length; j++) {

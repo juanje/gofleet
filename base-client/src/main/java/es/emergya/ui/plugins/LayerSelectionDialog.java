@@ -50,7 +50,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openstreetmap.gui.jmapviewer.MemoryTileCache;
 import org.openstreetmap.josm.gui.layer.Layer;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.actions.UsuarioAdmin;
 import es.emergya.bbdd.bean.CapaInformacion;
 import es.emergya.bbdd.bean.CapaInformacionUsuario;
@@ -217,7 +217,7 @@ public class LayerSelectionDialog extends JDialog implements ActionListener {
 	private void save(String layerName, boolean visible) {
 		CapaInformacionUsuario cu = null;
 
-		for (CapaInformacionUsuario c : UsuarioConsultas.getCapas(Autenticacion
+		for (CapaInformacionUsuario c : UsuarioConsultas.getCapas(Authentication
 				.getUsuario())) {
 			if (c.getCapaInformacion().getNombre().equals(layerName)) {
 				cu = c;
@@ -231,7 +231,7 @@ public class LayerSelectionDialog extends JDialog implements ActionListener {
 			// sus valores
 			cu.setVisibleGPS(false);
 			cu.setCapaInformacion(capa);
-			cu.setUsuario(Autenticacion.getUsuario());
+			cu.setUsuario(Authentication.getUsuario());
 		}
 
 		// XXX Esto es malvado y petara tarde o temprano
@@ -246,7 +246,7 @@ public class LayerSelectionDialog extends JDialog implements ActionListener {
 	}
 
 	private boolean wasVisible(CapaInformacion capa) {
-		for (CapaInformacionUsuario c : UsuarioConsultas.getCapas(Autenticacion
+		for (CapaInformacionUsuario c : UsuarioConsultas.getCapas(Authentication
 				.getUsuario())) {
 			if (c.getCapaInformacion().getNombre().equals(capa.getNombre())) {
 				log.debug("Comprobando si la capa" + capa.getNombre()

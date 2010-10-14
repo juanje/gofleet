@@ -68,7 +68,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
 import edu.emory.mathcs.backport.java.util.Collections;
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.Incidencia;
 import es.emergya.bbdd.bean.Recurso;
 import es.emergya.cliente.constants.LogicConstants;
@@ -162,7 +162,7 @@ public class FleetControlMapViewer extends MapViewer implements ActionListener {
 							Internacionalization
 									.getString("map.menu.newIncidence"))) {
 						Incidencia f = new Incidencia();
-						f.setCreador(Autenticacion.getUsuario());
+						f.setCreador(Authentication.getUsuario());
 						LatLon from = mapViewLocal.getLatLon(mouseEvent.getX(),
 								mouseEvent.getY());
 						GeometryFactory gf = new GeometryFactory();
@@ -517,7 +517,7 @@ public class FleetControlMapViewer extends MapViewer implements ActionListener {
 					Internacionalization.getString("Incidences.incidences"),
 					File.createTempFile("incidences", "tmp"), new GpxLayer(
 							new GpxData()), this.mapView);
-			incidences.visible = Autenticacion.getUsuario()
+			incidences.visible = Authentication.getUsuario()
 					.getIncidenciasVisibles();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -533,7 +533,7 @@ public class FleetControlMapViewer extends MapViewer implements ActionListener {
 							.getString("Resources.resources.people"),
 					File.createTempFile("layer_res", "tmp"), new GpxLayer(
 							new GpxData()), this.mapView);
-			resources.visible = Autenticacion.getUsuario()
+			resources.visible = Authentication.getUsuario()
 					.getPersonasVisibles();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -549,7 +549,7 @@ public class FleetControlMapViewer extends MapViewer implements ActionListener {
 							.getString("Resources.resources.vehicles"),
 					File.createTempFile("layer_res", "tmp"), new GpxLayer(
 							new GpxData()), this.mapView);
-			resources.visible = Autenticacion.getUsuario()
+			resources.visible = Authentication.getUsuario()
 					.getVehiculosVisibles();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -560,10 +560,10 @@ public class FleetControlMapViewer extends MapViewer implements ActionListener {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void updateControls() {
-		if (Autenticacion.isAutenticated()) {
+		if (Authentication.isAuthenticated()) {
 			controlPanel.setAvaliableResources(Collections
 					.synchronizedCollection(RecursoConsultas
-							.getAll(Autenticacion.getUsuario())));
+							.getAll(Authentication.getUsuario())));
 			controlPanel.setAvaliableIncidences(Collections
 					.synchronizedCollection(IncidenciaConsultas.getOpened()));
 		}

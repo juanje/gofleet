@@ -40,7 +40,7 @@ import javax.swing.SpinnerDateModel;
 
 import org.freixas.jcalendar.JCalendarCombo;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.actions.IncidenciaAdmin;
 import es.emergya.bbdd.bean.CategoriaIncidencia;
 import es.emergya.bbdd.bean.EstadoIncidencia;
@@ -73,7 +73,7 @@ public class IncidenceDialog extends GenericDialog<Incidencia> {
 			i = new Incidencia();
 			i.setTitulo(Internacionalization
 					.getString("Incidences.nuevaIncidencia"));
-			i.setCreador(Autenticacion.getUsuario());
+			i.setCreador(Authentication.getUsuario());
 		} else if (i.getId() != null) {
 			i = IncidenciaConsultas.get(i.getId());
 			log.trace("Hemos refrescado los valores de " + i);
@@ -129,7 +129,7 @@ public class IncidenceDialog extends GenericDialog<Incidencia> {
 
 					if (i == null) {
 						i = new Incidencia();
-						i.setCreador(Autenticacion.getUsuario());
+						i.setCreador(Authentication.getUsuario());
 					} else if (i.getId() != null)
 						i = IncidenciaConsultas.get(i.getId());
 
@@ -195,7 +195,7 @@ public class IncidenceDialog extends GenericDialog<Incidencia> {
 												.setCategoria((CategoriaIncidencia) valor);
 									} else if (name.equals(INCIDENCES_CREACION)) {
 										i
-												.setCreador(Autenticacion
+												.setCreador(Authentication
 														.getUsuario());
 									} else if (name
 											.equals(INCIDENCES_DESCRIPCION)) {

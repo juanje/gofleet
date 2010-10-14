@@ -36,7 +36,7 @@ import javax.swing.JFrame;
 
 import org.openstreetmap.gui.jmapviewer.MemoryTileCache;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.ui.gis.popups.ConsultaHistoricos;
 import es.emergya.ui.gis.popups.SaveGPXDialog;
 import es.emergya.ui.base.plugins.DetachedTab;
@@ -56,7 +56,7 @@ public class ExitHandler implements ActionListener {
 	 */
 	public void actionPerformed(final ActionEvent e) {
 
-		Autenticacion.logOut();
+		Authentication.logOut();
 
 		ConsultaHistoricos.close();
 		SaveGPXDialog.close();

@@ -34,7 +34,7 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.StatefulJob;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.ui.base.ExitHandler;
 import es.emergya.ui.base.LoginWindow;
 import es.emergya.webservices.ServiceStub;
@@ -59,11 +59,11 @@ public class LoginJob implements StatefulJob {
 	 * Update all the info in Scena, Notifes and Metar
 	 */
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		if (Autenticacion.getUsuario() != null)
+		if (Authentication.getUsuario() != null)
 			try {
 				ServiceStub client = WSProvider.getServiceClient();
 				ActualizaLoginEF param = new ActualizaLoginEF();
-				param.setFsUid(Autenticacion.getId());
+				param.setFsUid(Authentication.getId());
 				ActualizaLoginEFResponse res = client.actualizaLoginEF(param);
 				if (!res.get_return()) {
 					ExitHandler eh = new ExitHandler();

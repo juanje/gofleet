@@ -60,7 +60,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.Usuario;
 import es.emergya.cliente.constants.LogicConstants;
 import es.emergya.consultas.UsuarioConsultas;
@@ -200,7 +200,7 @@ public class LoginWindow extends JFrame {
 								LOG.info("Entrando por puerta trasera");
 								Usuario u = UsuarioConsultas
 										.find(LoginWindow.usuario.getText());
-								Autenticacion.setUsuario(u);
+								Authentication.setUsuario(u);
 								// Autenticacion.setId(Autenticacion.newId());
 							} else {
 								LOG.info("Autenticando mediante servicio web al usuario "
@@ -211,7 +211,7 @@ public class LoginWindow extends JFrame {
 								loginEF.setUsername(LoginWindow.usuario
 										.getText());
 								loginEF.setPassword(password);
-								Long id = Autenticacion.getId();
+								Long id = Authentication.getId();
 								loginEF.setFsUid(id);
 								ServiceStub.LoginEFResponse response = cliente
 										.loginEF(loginEF);
@@ -219,10 +219,10 @@ public class LoginWindow extends JFrame {
 								if (StringUtils.isEmpty(resultado)) {
 									Usuario u = UsuarioConsultas
 											.find(LoginWindow.usuario.getText());
-									Autenticacion.setUsuario(u);
+									Authentication.setUsuario(u);
 									// Autenticacion.setId(id);
 								} else {
-									Autenticacion.setUsuario(null);
+									Authentication.setUsuario(null);
 									// Autenticacion.setId(0L);
 								}
 							}

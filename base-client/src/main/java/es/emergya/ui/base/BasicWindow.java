@@ -49,7 +49,7 @@ import org.openstreetmap.josm.data.coor.EastNorth;
 import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.gui.MapView;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.Usuario;
 import es.emergya.cliente.constants.LogicConstants;
 import es.emergya.i18n.Internacionalization;
@@ -188,12 +188,12 @@ public class BasicWindow {
 	/**
 	 * Deprecated, usa mejor Autenticacion.getUsuario()
 	 * 
-	 * @see Autenticacion#getUsuario()
+	 * @see Authentication#getUsuario()
 	 * @return
 	 */
 	@Deprecated
 	public static Usuario getUsuario() {
-		return Autenticacion.getUsuario();
+		return Authentication.getUsuario();
 	}
 
 	/**
@@ -261,12 +261,12 @@ public class BasicWindow {
 	}
 
 	/**
-	 * @see Autenticacion#isAutenticated()
+	 * @see Authentication#isAuthenticated()
 	 * @return
 	 */
 	@Deprecated
 	public static boolean isAutenticated() {
-		return Autenticacion.isAutenticated();
+		return Authentication.isAuthenticated();
 	}
 
 	public static Image getIconImage() {
@@ -302,7 +302,7 @@ class RemoveClientesConectadosListener extends WindowAdapter {
 	 */
 	@Override
 	public void windowClosing(WindowEvent e) {
-		Autenticacion.logOut();
+		Authentication.logOut();
 	}
 
 }

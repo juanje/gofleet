@@ -44,7 +44,7 @@ import javax.swing.JFrame;
 
 import org.apache.commons.logging.LogFactory;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.ui.base.BasicWindow;
 
 /**
@@ -96,7 +96,7 @@ public class DetachedTab extends JFrame {
 					DetachedTab.this.dispose();
 				}
 
-				Autenticacion.logOut();
+				Authentication.logOut();
 				super.windowClosing(e);
 			}
 		});

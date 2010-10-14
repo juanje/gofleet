@@ -81,7 +81,7 @@ import org.openstreetmap.josm.gui.layer.markerlayer.Marker;
 import org.openstreetmap.josm.gui.layer.markerlayer.MarkerLayer;
 import org.openstreetmap.josm.gui.preferences.ToolbarPreferences;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.actions.UsuarioAdmin;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Incidencia;
@@ -1028,7 +1028,7 @@ public class CustomMapView extends MapView implements RotatableView,
 						.getString("Resources.resources.vehicles");
 				String capa_people = Internacionalization
 						.getString("Resources.resources.people");
-				Usuario u = UsuarioConsultas.find(Autenticacion.getUsuario()
+				Usuario u = UsuarioConsultas.find(Authentication.getUsuario()
 						.getNombreUsuario());
 
 				if (u != null) {
@@ -1187,7 +1187,7 @@ public class CustomMapView extends MapView implements RotatableView,
 			((MapViewer) getParent()).updateControls();
 		}
 
-		List<Recurso> allres = RecursoConsultas.getAll(Autenticacion
+		List<Recurso> allres = RecursoConsultas.getAll(Authentication
 				.getUsuario());
 
 		boolean peopleShowing = people != null && people.visible;

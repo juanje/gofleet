@@ -44,7 +44,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.Capa;
 import es.emergya.bbdd.bean.CapaInformacion;
 import es.emergya.bbdd.bean.CapaInformacionUsuario;
@@ -286,7 +286,7 @@ public class CapaInformacionHome extends GenericDaoHibernate<CapaInformacion, Lo
                         criteria.add(Restrictions.eq("visibleHistorico", true));
                     }
                     criteria = criteria.add(Restrictions.sqlRestriction("{alias}.fk_usuarios = "
-                            + Autenticacion.getUsuario().getId()));
+                            + Authentication.getUsuario().getId()));
                 }
             }
 

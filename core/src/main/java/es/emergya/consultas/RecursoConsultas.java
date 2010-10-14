@@ -34,7 +34,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.Flota;
 import es.emergya.bbdd.bean.Incidencia;
 import es.emergya.bbdd.bean.Patrulla;
@@ -59,7 +59,7 @@ public class RecursoConsultas {
 
 	@Deprecated
 	public static List<Recurso> getAll() {
-		return getAll(Autenticacion.getUsuario());
+		return getAll(Authentication.getUsuario());
 	}
 
 	public static List<Recurso> getAll(Usuario u) {

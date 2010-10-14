@@ -99,7 +99,7 @@ import org.openstreetmap.josm.gui.layer.MyGpxLayer;
 import org.openstreetmap.josm.io.GpxImporter;
 import org.openstreetmap.josm.io.GpxWriter;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Incidencia;
 import es.emergya.bbdd.bean.Recurso;
@@ -664,23 +664,23 @@ public class ConsultaHistoricos extends JFrame {
 						}
 						if (soloUltimas.isSelected()) {
 							if (idRecursos.size() > 0) {
-								getUltimasPosiciones(Autenticacion.getUsuario()
+								getUltimasPosiciones(Authentication.getUsuario()
 										.getNombreUsuario(), idRecursos,
 										idZonas);
 							}
 							if (idIncidencias.size() > 0) {
-								getPosicionesIncidencias(Autenticacion
+								getPosicionesIncidencias(Authentication
 										.getUsuario().getNombreUsuario(),
 										idIncidencias, idZonas);
 							}
 						} else {
 							if (idRecursos.size() > 0) {
-								getRutas(Autenticacion.getUsuario()
+								getRutas(Authentication.getUsuario()
 										.getNombreUsuario(), idRecursos,
 										getFechaIni(), getFechaFin());
 							}
 							if (idIncidencias.size() > 0) {
-								getPosicionesIncidencias(Autenticacion
+								getPosicionesIncidencias(Authentication
 										.getUsuario().getNombreUsuario(),
 										idIncidencias, idZonas);
 							}
@@ -1055,10 +1055,10 @@ public class ConsultaHistoricos extends JFrame {
 					zonas[i] = idZonas.get(i);
 				}
 
-				recursosEnPeriodos = getRecursosEnPeriodo(Autenticacion
+				recursosEnPeriodos = getRecursosEnPeriodo(Authentication
 						.getUsuario().getNombreUsuario(), ini, fin, zonas);
 
-				incidenciasEnPeriodos = getIncidenciasEnPeriodo(Autenticacion
+				incidenciasEnPeriodos = getIncidenciasEnPeriodo(Authentication
 						.getUsuario().getNombreUsuario(), ini, fin, zonas);
 
 				return null;

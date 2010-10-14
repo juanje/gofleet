@@ -38,7 +38,7 @@ import javax.swing.SpinnerDateModel;
 
 import org.freixas.jcalendar.JCalendarCombo;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.actions.IncidenciaAdmin;
 import es.emergya.bbdd.bean.CategoriaIncidencia;
 import es.emergya.bbdd.bean.EstadoIncidencia;
@@ -67,7 +67,7 @@ public class FormIncidencia extends FormGeneric {
 
 		i = new Incidencia();
 		i.setTitulo("Nueva incidencia");
-		i.setCreador(Autenticacion.getUsuario());
+		i.setCreador(Authentication.getUsuario());
 
 		// Identificamos el frame
 		setName(i.getTitulo());
@@ -101,7 +101,7 @@ public class FormIncidencia extends FormGeneric {
 
 		if (i == null) {
 			i = new Incidencia();
-			i.setCreador(Autenticacion.getUsuario());
+			i.setCreador(Authentication.getUsuario());
 			i.setFechaCreacion(Calendar.getInstance().getTime());
 		}
 
@@ -153,7 +153,7 @@ public class FormIncidencia extends FormGeneric {
 							&& (valor instanceof CategoriaIncidencia)) {
 						i.setCategoria((CategoriaIncidencia) valor);
 					} else if (name.equals(INCIDENCES_CREACION)) {
-						i.setCreador(Autenticacion.getUsuario());
+						i.setCreador(Authentication.getUsuario());
 					} else if (name.equals(INCIDENCES_DESCRIPCION)) {
 						i.setDescripcion(valor.toString());
 					} else if (name.equals(INCIDENCES_STATUS)

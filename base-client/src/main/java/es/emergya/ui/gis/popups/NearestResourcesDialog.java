@@ -76,7 +76,7 @@ import org.openstreetmap.josm.Main;
 import org.openstreetmap.josm.data.coor.EastNorth;
 import org.openstreetmap.josm.data.coor.LatLon;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Incidencia;
 import es.emergya.bbdd.bean.Recurso;
@@ -97,7 +97,7 @@ import es.emergya.ui.plugins.JButtonCellEditor;
  * 
  */
 public class NearestResourcesDialog extends JFrame implements ActionListener {
-	protected static List<Recurso> ALL = RecursoConsultas.getAll(Autenticacion
+	protected static List<Recurso> ALL = RecursoConsultas.getAll(Authentication
 			.getUsuario());
 
 	private final class CustomTableModel extends DefaultTableModel {
@@ -402,7 +402,7 @@ public class NearestResourcesDialog extends JFrame implements ActionListener {
 	}
 
 	private void calculaMasCercanos(JButton b) {
-		ALL = RecursoConsultas.getAll(Autenticacion.getUsuario());
+		ALL = RecursoConsultas.getAll(Authentication.getUsuario());
 		try {
 			if (b.getActionCommand().equals(getString("Buttons.refresh"))) {
 
@@ -451,7 +451,7 @@ public class NearestResourcesDialog extends JFrame implements ActionListener {
 
 							log.info("Buscamos los más cercanos a " + point);
 							Recurso[] rs = RecursoConsultas.getNearest(point
-									.getX(), point.getY(), num, Autenticacion
+									.getX(), point.getY(), num, Authentication
 									.getUsuario());
 							log.info("Tenemos los más cercanos a " + point
 									+ ", que son " + rs.length);

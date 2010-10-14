@@ -40,7 +40,7 @@ import javax.swing.JFrame;
 
 import org.apache.commons.logging.LogFactory;
 
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.bbdd.bean.Usuario;
 import es.emergya.i18n.Internacionalization;
 
@@ -146,7 +146,7 @@ public class PluginContainer extends AbstractPluggable {
 
 				// Deletes the admin tab if the user is not administrator
 				if (tab.getType().equals(PluginType.ADMIN)
-						&& !Autenticacion.isAdministrator()) {
+						&& !Authentication.isAdministrator()) {
 					getPane().remove(tab);
 				}
 			}
@@ -154,7 +154,7 @@ public class PluginContainer extends AbstractPluggable {
 	}
 
 	private boolean isAllowed(AbstractPluggable tab) {
-		Usuario u = Autenticacion.getUsuario();
+		Usuario u = Authentication.getUsuario();
 		boolean isAdmin = (u != null && u.getAdministrador());
 		return ((tab.type != PluginType.ADMIN) || isAdmin);
 	}

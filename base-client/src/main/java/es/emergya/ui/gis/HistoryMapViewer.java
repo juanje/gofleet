@@ -56,7 +56,7 @@ import org.openstreetmap.josm.Main;
 import org.openstreetmap.josm.gui.layer.Layer;
 
 import edu.emory.mathcs.backport.java.util.Collections;
-import es.emergya.actions.Autenticacion;
+import es.emergya.actions.Authentication;
 import es.emergya.cliente.constants.LogicConstants;
 import es.emergya.i18n.Internacionalization;
 import es.emergya.ui.base.plugins.PluginType;
@@ -251,7 +251,7 @@ public class HistoryMapViewer extends MapViewer {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void updateControls() {
-		if (Autenticacion.isAutenticated()) {
+		if (Authentication.isAuthenticated()) {
 			controlPanel.setAvaliableResources(Collections
 					.synchronizedCollection(ConsultaHistoricos
 							.getCurrentRecursos()));
