@@ -5,7 +5,7 @@
  * @author <a href="mailto:marias@emergya.es">María Arias</a>
  * @author <a href="mailto:fario@emergya.es">Félix del Río Beningno</a>
  *
- * This file is part of DEMOGIS
+ * This file is part of GoFleet
  *
  * This software is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
