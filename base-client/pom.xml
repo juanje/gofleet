@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>es.emergya</groupId>
-		<artifactId>${projectname}</artifactId>
+		<artifactId>gofleet</artifactId>
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
@@ -131,7 +131,7 @@
 						<manifestEntries>
 							<Class-Path>.</Class-Path>
 							<mode>development</mode>
-							<url>${pom.url}</url>
+							<url>${project.url}</url>
 							<SplashScreen-Image>images/splash.gif</SplashScreen-Image>
 							<Implementation-Build>${buildNumber}</Implementation-Build>
 						</manifestEntries>
@@ -272,9 +272,9 @@
 		</dependency>
 		<!-- parent and children -->
 		<dependency>
-			<groupId>${pom.parent.groupId}</groupId>
+			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>core</artifactId>
-			<version>${pom.parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<!-- Spring -->
 		<dependency>
