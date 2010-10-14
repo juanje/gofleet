@@ -156,16 +156,19 @@
 		</testResources>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>central</id>
-			<url>http://repo1.maven.org/maven2</url>
-		</repository>
-		<repository>
-			<id>appfuse</id>
-			<url>http://static.appfuse.org/repository</url>
-		</repository>
-	</repositories>
+        <repositories>
+                <repository>
+                        <releases>
+                                <checksumPolicy>warn</checksumPolicy>
+                        </releases>
+                        <snapshots>
+                                <checksumPolicy>ignore</checksumPolicy>
+                        </snapshots>
+                        <id>Emergya</id>
+                        <name>Archiva</name>
+                        <url>http://lab-gis:8080/archiva/repository/internal/</url>
+                </repository>
+        </repositories>
 
 	<dependencies>
 		<dependency>

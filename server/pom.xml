@@ -353,30 +353,19 @@
 		</dependency>
 	</dependencies>
 
-
-	<repositories>
-		<repository>
-			<releases>
-				<checksumPolicy>warn</checksumPolicy>
-			</releases>
-			<snapshots>
-				<checksumPolicy>ignore</checksumPolicy>
-			</snapshots>
-			<id>Emergya nexus</id>
-			<name>Emergya nexus</name>
-			<url>http://gis.emergya.info/nexus/content/groups/public</url>
-		</repository>
-		<repository>
-			<id>osgeo</id>
-			<name>Open Source Geospatial Foundation Repository</name>
-			<url>http://download.osgeo.org/webdav/geotools/</url>
-		</repository>
-		<repository>
-			<id>GeoTools Fr</id>
-			<name>GeoTools Fr</name>
-			<url>http://maven.geotools.fr/repository</url>
-		</repository>
-	</repositories>
+        <repositories>
+                <repository>
+                        <releases>
+                                <checksumPolicy>warn</checksumPolicy>
+                        </releases>
+                        <snapshots>
+                                <checksumPolicy>ignore</checksumPolicy>
+                        </snapshots>
+                        <id>Emergya</id>
+                        <name>Archiva</name>
+                        <url>http://lab-gis:8080/archiva/repository/internal/</url>
+                </repository>
+        </repositories>
 
 </project>
 

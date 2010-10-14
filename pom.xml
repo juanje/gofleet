@@ -143,36 +143,9 @@
 			<snapshots>
 				<checksumPolicy>ignore</checksumPolicy>
 			</snapshots>
-			<id>Emergya nexus</id>
-			<name>Emergya nexus</name>
-			<url>http://gis.emergya.info/nexus/content/groups/public
-            </url>
-		</repository>
-		<repository>
-			<id>central</id>
-			<url>http://repo1.maven.org/maven2</url>
-		</repository>
-		<repository>
-			<id>appfuse</id>
-			<url>http://static.appfuse.org/repository</url>
-		</repository>
-		<repository>
-			<id>GeoTools repo</id>
-			<url>http://maven.geotools.fr/repository</url>
-		</repository>
-		<repository>
-			<id>Hibernate Spatial repo</id>
-			<url>http://www.hibernatespatial.org/repository</url>
-		</repository>
-		<repository>
-			<id>jboss</id>
-			<url>http://repository.jboss.com/maven2</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
+			<id>Emergya</id>
+			<name>Archiva</name>
+			<url>http://lab-gis:8080/archiva/repository/internal/</url>
 		</repository>
 	</repositories>
 
@@ -304,7 +277,7 @@
 	<properties>
 		<!-- Application settings -->
 		<copyright.year>2010</copyright.year>
-		<projectname>demogis</projectname>
+		<projectname>gofleet</projectname>
 		<dao.framework>hibernate</dao.framework>
 		<web.framework>spring</web.framework>
 		<amp.genericCore>true</amp.genericCore>
