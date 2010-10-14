@@ -12,12 +12,12 @@ SET escape_string_warning = off;
 -- Name: demogis; Type: DATABASE; Schema: -; Owner: -
 --
 
-CREATE USER demogis WITH PASSWORD 'demogis';
+CREATE USER gofleet WITH PASSWORD 'gofleet';
 
-DROP DATABASE IF EXISTS demogis;
-CREATE DATABASE demogis WITH TEMPLATE = template_postgis ENCODING = 'UTF8' OWNER = demogis;
+DROP DATABASE IF EXISTS gofleet;
+CREATE DATABASE gofleet WITH TEMPLATE = template_postgis ENCODING = 'UTF8' OWNER = gofleet;
 
-\connect demogis demogis
+\connect gofleet gofleet
 
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = off;
