@@ -12,8 +12,8 @@
 		<property name="hibernate.transaction.auto_close_session">true</property>
 		<property name="hibernate.connection.autocommit">true</property>
 
-		<mapping class="es.emergya.bbdd.bean.BandejaEntrada" />
-		<mapping class="es.emergya.bbdd.bean.BandejaSalida" />
+		<mapping class="es.emergya.bbdd.bean.Inbox" />
+		<mapping class="es.emergya.bbdd.bean.Outbox" />
 		<mapping class="es.emergya.bbdd.bean.Capa" />
 		<mapping class="es.emergya.bbdd.bean.CapaInformacion" />
 		<mapping class="es.emergya.bbdd.bean.CapaInformacionUsuario" />

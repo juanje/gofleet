@@ -149,7 +149,7 @@ public class Inbox extends BaseObject implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "BandejaEntrada [datagramaTetra=" + datagramaTetra + ", id="
+		return "Inbox [datagramaTetra=" + datagramaTetra + ", id="
 				+ id + ", marcaTemporal=" + marcaTemporal + ", origen="
 				+ origen + ", procesado=" + procesado + "]";
 	}
