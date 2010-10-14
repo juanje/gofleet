@@ -237,7 +237,13 @@
 	</pluginRepositories>
 	<dependencies>
 		<!-- Librerias de mapas (JOSM) -->
+			<!-- parent and children -->
 		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+ 		<dependency>
 			<groupId>org.openstreetmap</groupId>
 			<artifactId>josm</artifactId>
 			<version>1669</version>
@@ -269,12 +275,6 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
-		</dependency>
-		<!-- parent and children -->
-		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>core</artifactId>
-			<version>${project.parent.version}</version>
 		</dependency>
 		<!-- Spring -->
 		<dependency>
