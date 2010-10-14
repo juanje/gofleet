@@ -15,9 +15,9 @@
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://postgresql-apps/demogis" />
-		<property name="user" value="demogis" />
-		<property name="password" value="demogis" />
+		<property name="jdbcUrl" value="jdbc:postgresql://postgresql-apps/gofleet" />
+		<property name="user" value="gofleet" />
+		<property name="password" value="gofleet" />
 			
 		<property name="acquireIncrement" value="3" />
 		<property name="minPoolSize" value="2" />
