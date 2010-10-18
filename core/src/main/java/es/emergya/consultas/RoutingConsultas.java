@@ -45,12 +45,10 @@ import es.emergya.utils.MyBeanFactory;
 public class RoutingConsultas {
 	static final Log log = LogFactory.getLog(RoutingConsultas.class);
 	@SuppressWarnings("unused")
-	private static GenericDao<Routing, Long> routingDAO = null;
 	private static RoutingHome routingHome = null;
 
 	static {
-		routingDAO = (GenericDao<Routing, Long>) MyBeanFactory
-				.getBean("routingDAO");
+
 		routingHome = (RoutingHome) MyBeanFactory.getBean("routingHome");
 	}
 
@@ -98,7 +96,7 @@ public class RoutingConsultas {
 	}
 
 	/**
-	 * Devuelve la lista de num calles que encajan con el patr�n
+	 * Devuelve la lista de num calles que encajan con el patrón
 	 * 
 	 * @param pattern
 	 * @param num
