@@ -1,0 +1,3 @@
+TITLE=Dummy Module
+TYPE=ADMIN
+MAIN=org.gofleet.module.dummy.MainDummy
