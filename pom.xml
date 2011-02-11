@@ -323,7 +323,7 @@
 		<hibernateSpatial.version>1.0-M2</hibernateSpatial.version>
 		<default.long.encoding>UTF-8</default.long.encoding>
 		<default.encoding>UTF-8</default.encoding>
-		<host>postgresql-apps</host>
+		<host>localhost</host>
 		<ws_host>192.168.1.215</ws_host>
 		<url.webservices>http://${ws_host}:8080/${projectname}-webservices/services/Service</url.webservices>
 	</properties>

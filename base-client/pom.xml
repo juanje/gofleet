@@ -236,6 +236,12 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<dependencies>
+		<dependency>
+			<groupId>org.gofleet.module</groupId>
+			<artifactId>dummy</artifactId>
+			<version>1.0</version>
+		</dependency>
+
 		<!-- Librerias de mapas (JOSM) -->
 			<!-- parent and children -->
 		<dependency>

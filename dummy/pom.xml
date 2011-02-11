@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.gofleet.module</groupId>
   <artifactId>dummy</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>dummy_module</name>
   <description>This is a dummy example of a gofleet module.</description>
   <dependencies>
