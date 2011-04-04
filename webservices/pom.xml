@@ -5,18 +5,25 @@
 
 
 	<parent>
-		<groupId>es.emergya</groupId>
+		<groupId>org.gofleet</groupId>
 		<artifactId>gofleet</artifactId>
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>es.emergya</groupId>
+	<groupId>org.gofleet</groupId>
 	<artifactId>${projectname}webservices</artifactId>
 	<name>webservice</name>
 	<version>1.0-SNAPSHOT</version>
 	<description>${projectname} WebService</description>
 	<packaging>war</packaging>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>gofleet</id>
+			<url>http://gis.emergya.info/nexus/content/repositories/gofleet</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<finalName>${projectname}-webservices</finalName>
@@ -273,20 +280,19 @@
 		</dependency>
 
 	</dependencies>
-
-        <repositories>
-                <repository>
-                        <releases>
-                                <checksumPolicy>warn</checksumPolicy>
-                        </releases>
-                        <snapshots>
-                                <checksumPolicy>ignore</checksumPolicy>
-                        </snapshots>
-			<id>Emergya nexus</id>
-			<name>Emergya nexus</name>
-			<url>http://gis.emergya.info/nexus/content/groups/public</url>
-                </repository>
-        </repositories>
+	<repositories>
+		<repository>
+			<releases>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<id>GoFleet</id>
+			<name>GoFleet</name>
+			<url>http://gis.emergya.info/nexus/content/groups/Gofleet</url>
+		</repository>
+	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>

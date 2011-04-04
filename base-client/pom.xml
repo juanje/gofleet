@@ -4,17 +4,23 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>es.emergya</groupId>
+		<groupId>org.gofleet</groupId>
 		<artifactId>gofleet</artifactId>
 		<version>1.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>es.emergya</groupId>
+	<groupId>org.gofleet</groupId>
 	<artifactId>client</artifactId>
 	<name>client</name>
 	<version>1.0-SNAPSHOT</version>
 	<description>${projectname} Client</description>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>gofleet</id>
+			<url>http://gis.emergya.info/nexus/content/repositories/gofleet</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<pluginManagement>
@@ -201,21 +207,19 @@
 		</plugins>
 	</build>
 
-
-        <repositories>
-                <repository>
-                        <releases>
-                                <checksumPolicy>warn</checksumPolicy>
-                        </releases>
-                        <snapshots>
-                                <checksumPolicy>ignore</checksumPolicy>
-                        </snapshots>
-                        <id>Emergya nexus</id>
-			<name>Emergya nexus</name>
-			<url>http://gis.emergya.info/nexus/content/groups/public</url>
-                </repository>
-        </repositories>
-
+	<repositories>
+		<repository>
+			<releases>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<id>GoFleet</id>
+			<name>GoFleet</name>
+			<url>http://gis.emergya.info/nexus/content/groups/Gofleet</url>
+		</repository>
+	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
@@ -236,20 +240,17 @@
 		</pluginRepository>
 	</pluginRepositories>
 	<dependencies>
-		<dependency>
-			<groupId>org.gofleet.module</groupId>
-			<artifactId>dummy</artifactId>
-			<version>1.0</version>
-		</dependency>
+		<!--<dependency> <groupId>org.gofleet.module</groupId> <artifactId>dummy</artifactId> 
+			<version>1.0</version> </dependency> -->
 
 		<!-- Librerias de mapas (JOSM) -->
-			<!-- parent and children -->
+		<!-- parent and children -->
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
- 		<dependency>
+		<dependency>
 			<groupId>org.openstreetmap</groupId>
 			<artifactId>josm</artifactId>
 			<version>1669</version>
