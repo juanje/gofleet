@@ -21,6 +21,10 @@
 			<id>gofleet</id>
 			<url>http://gis.emergya.info/nexus/content/repositories/gofleet</url>
 		</snapshotRepository>
+                <repository>
+                        <id>gofleet</id>
+                        <url>http://gis.emergya.info/nexus/content/repositories/gofleet</url>
+                </repository>
 	</distributionManagement>
 
 	<build>
