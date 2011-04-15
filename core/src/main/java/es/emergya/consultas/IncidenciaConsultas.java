@@ -92,4 +92,10 @@ public class IncidenciaConsultas {
 		res.addAll(incidenciaHome.getStatuses());
 		return res.toArray(new Object[0]);
 	}
+
+	public static List<Incidencia> getIncidenciasEnPeriodo(
+			String nombreUsuario, Calendar fechaInicio, Calendar fechaFinal) {
+		return incidenciaHome.getIncidenciasEnPeriodo(nombreUsuario,
+				fechaInicio, fechaFinal);
+	}
 }

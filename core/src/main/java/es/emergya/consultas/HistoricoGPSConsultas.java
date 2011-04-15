@@ -30,9 +30,14 @@ package es.emergya.consultas;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
+import es.emergya.bbdd.bean.Flota;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Recurso;
+import es.emergya.bbdd.bean.Usuario;
+import es.emergya.bbdd.bean.notmapped.Posicion;
 import es.emergya.bbdd.dao.HistoricoGPSHome;
 import es.emergya.utils.MyBeanFactory;
 
@@ -78,5 +83,31 @@ public class HistoricoGPSConsultas {
 
 	public static Calendar firstGPSDateForRecurso(Recurso recurso) {
 		return historicoGPSHome.firstGPSForRecurso(recurso.getIdentificador());
+	}
+
+	public static List<String> findRecursosInIntervalForFoltas(
+			Set<Flota> flotas, Calendar fechaInicio, Calendar fechaFinal,
+			Usuario user) {
+		return findRecursosInIntervalForFoltas(flotas, fechaInicio, fechaFinal,
+				user);
+	}
+
+	public static List<HistoricoGPS> getPosicionesEnIntervalo(String recurso,
+			Date inicio, Date fin) {
+		return historicoGPSHome.getPosicionesEnIntervalo(recurso, inicio, fin);
+	}
+
+	public static List<HistoricoGPS> getPosicionesEnIntervaloSoloBBDD(
+			String recurso, Date inicio, Date fin) {
+		return historicoGPSHome.getPosicionesEnIntervaloSoloBBDD(recurso,
+				inicio, fin);
+	}
+
+	public static Posicion[] getPosicionesIncidencias(String[] idIncidencias) {
+		return getPosicionesIncidencias(idIncidencias);
+	}
+
+	public static Posicion[] getUltimasPosiciones(String[] idRecursos) {
+		return historicoGPSHome.getUltimasPosiciones(idRecursos);
 	}
 }

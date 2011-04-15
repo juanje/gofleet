@@ -26,61 +26,42 @@
  * This exception does not however invalidate any other reasons why the
  * executable file might be covered by the GNU General Public License.
  */
-package es.emergya.consultas;
-
-import java.util.Calendar;
-import java.util.List;
+package es.emergya.actions;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import es.emergya.bbdd.bean.CapaInformacionUsuario;
 import es.emergya.bbdd.bean.Usuario;
-import es.emergya.bbdd.dao.UsuarioHome;
+import es.emergya.bbdd.dao.ClienteConectadoHome;
 import es.emergya.utils.MyBeanFactory;
 
-public class UsuarioConsultas {
+public class ClienteConectadoAdmin {
 
-	private UsuarioConsultas() {
+	static final Log log = LogFactory.getLog(ClienteConectadoAdmin.class);
+	private static ClienteConectadoHome clienteHome;
+
+	static {
+		clienteHome = (ClienteConectadoHome) MyBeanFactory
+				.getBean("clienteHome");
+	}
+
+	private ClienteConectadoAdmin() {
 		super();
 	}
 
-	static {
-		usuarioHome = (UsuarioHome) MyBeanFactory.getBean("usuarioHome");
+	public static int cleanOldClienteConectado(int secondsOld) {
+		return clienteHome.cleanOldClienteConectado(secondsOld);
 	}
 
-	static final Log log = LogFactory.getLog(UsuarioConsultas.class);
-	private static UsuarioHome usuarioHome;
-
-	public static boolean alreadyExists(String nombreUsuario) {
-		return usuarioHome.alreadyExists(nombreUsuario);
+	public static int countClienteConectado() {
+		return clienteHome.countClienteConectado();
 	}
 
-	public static Usuario find(String nombreUsuario) {
-		return usuarioHome.find(nombreUsuario);
+	public static void addNewClienteConectado(Usuario user, Long fsUid) {
+		clienteHome.addNewClienteConectado(user, fsUid);
 	}
 
-	public static List<Usuario> getByExample(Usuario example) {
-		return usuarioHome.getByFilter(example);
-	}
-
-	public static int getTotal() {
-		return usuarioHome.getTotal();
-	}
-
-	public static Boolean isLastAdmin(String nombre) {
-		return usuarioHome.isLastAdmin(nombre);
-	}
-
-	public static Calendar lastUpdated() {
-		return usuarioHome.lastUpdated();
-	}
-
-	public static List<CapaInformacionUsuario> getCapas(Usuario u) {
-		return usuarioHome.getCapas(u);
-	}
-
-	public static Usuario checkLogin(String username, String password) {
-		return usuarioHome.checkLogin(username, password);
+	public static boolean updateLastConnected(Long fsUid) {
+		return clienteHome.updateLastConnected(fsUid);
 	}
 }

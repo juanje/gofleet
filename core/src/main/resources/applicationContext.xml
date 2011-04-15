@@ -22,7 +22,7 @@
 	<bean id="capaInformacionHome" class="es.emergya.bbdd.dao.CapaInformacionHome">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="clienteConectadoHome" class="es.emergya.bbdd.dao.ClienteConectadoHome">
+	<bean id="clienteHome" class="es.emergya.bbdd.dao.ClienteConectadoHome">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="configuracionHome" class="es.emergya.bbdd.dao.ConfiguracionHome">
