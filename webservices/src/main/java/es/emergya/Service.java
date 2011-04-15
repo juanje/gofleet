@@ -40,17 +40,17 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import es.emergya.actions.ClienteConectadoAdmin;
 import es.emergya.auxbeans.IncidenciaWS;
 import es.emergya.bbdd.bean.HistoricoGPS;
 import es.emergya.bbdd.bean.Incidencia;
 import es.emergya.bbdd.bean.Rol;
 import es.emergya.bbdd.bean.Usuario;
 import es.emergya.bbdd.bean.notmapped.Posicion;
-import es.emergya.bbdd.dao.ClienteConectadoHome;
-import es.emergya.bbdd.dao.HistoricoGPSHome;
-import es.emergya.bbdd.dao.IncidenciaHome;
-import es.emergya.bbdd.dao.UsuarioHome;
 import es.emergya.constants.LogicConstants;
+import es.emergya.consultas.HistoricoGPSConsultas;
+import es.emergya.consultas.IncidenciaConsultas;
+import es.emergya.consultas.UsuarioConsultas;
 import es.emergya.gpx.GPXGenerator;
 
 /**
@@ -83,14 +83,11 @@ public class Service implements IService {
 		LOG.info("Autenticando a " + username + " en la EF con id " + fsUid);
 		try {
 			String resultado = "";
-			ClienteConectadoHome clientesConectadosHome = new ClienteConectadoHome();
-			UsuarioHome usuariosHome = new UsuarioHome();
-			clientesConectadosHome
-					.cleanOldClienteConectado(LogicConstants.EF_TIMEOUT_LOGIN_CHECK);
-			int clientesConectados = clientesConectadosHome
+			ClienteConectadoAdmin.cleanOldClienteConectado(LogicConstants.EF_TIMEOUT_LOGIN_CHECK);
+			int clientesConectados = ClienteConectadoAdmin
 					.countClienteConectado();
 
-			Usuario user = usuariosHome.checkLogin(username, password);
+			Usuario user = UsuarioConsultas.checkLogin(username, password);
 			if (clientesConectados >= LogicConstants.MAX_CLIENTES_CONECTADOS) {
 				resultado = "ws.login.toomanyclients";
 			} else if (user == null) {
@@ -98,7 +95,7 @@ public class Service implements IService {
 			} else if (!user.getHabilitado()) {
 				resultado = "ws.login.nonHabilitedUser";
 			} else {
-				clientesConectadosHome.addNewClienteConectado(user, fsUid);
+				ClienteConectadoAdmin.addNewClienteConectado(user, fsUid);
 			}
 			LOG.info(resultado);
 
@@ -126,10 +123,9 @@ public class Service implements IService {
 		LOG.debug("Actualizando el registro de clientes_conectados de la EF con id "
 				+ fsUid);
 		try {
-			ClienteConectadoHome clientesConectadosHome = new ClienteConectadoHome();
-			clientesConectadosHome
+			ClienteConectadoAdmin
 					.cleanOldClienteConectado(LogicConstants.EF_TIMEOUT_LOGIN_CHECK);
-			return clientesConectadosHome.updateLastConnected(fsUid);
+			return ClienteConectadoAdmin.updateLastConnected(fsUid);
 		} catch (Throwable t) {
 			LOG.error(
 					"Error actualizando el registro de clientes_conectados de la EF con id "
@@ -166,10 +162,7 @@ public class Service implements IService {
 					+ (zonas == null ? null : Arrays.toString(zonas)));
 		}
 		try {
-
-			UsuarioHome usuarioHome = new UsuarioHome();
-			HistoricoGPSHome historicoHome = new HistoricoGPSHome();
-			Usuario user = usuarioHome.find(nombreUsuario);
+			Usuario user = UsuarioConsultas.find(nombreUsuario);
 
 			if (user == null) {
 				// Si no se encuentra el usuario no ha recursos que mostrar
@@ -186,7 +179,7 @@ public class Service implements IService {
 			}
 			// Utilizamos las flotas del rol para hacer una consulta sobre el
 			// histórico.
-			List<String> recursos = historicoHome
+			List<String> recursos = HistoricoGPSConsultas
 					.findRecursosInIntervalForFoltas(r.getFlotas(),
 							fechaInicio, fechaFinal, user);
 			LOG.info("Se encontraron los siguientes recursos: " + recursos);
@@ -211,9 +204,7 @@ public class Service implements IService {
 					+ (zonas == null ? null : Arrays.toString(zonas)));
 		}
 		try {
-			IncidenciaHome incidenciaHome = new IncidenciaHome();
-
-			List<Incidencia> incidencias = incidenciaHome
+			List<Incidencia> incidencias = IncidenciaConsultas
 					.getIncidenciasEnPeriodo(nombreUsuario, fechaInicio,
 							fechaFinal);
 			IncidenciaWS[] incidenciasWS = new IncidenciaWS[incidencias.size()];
@@ -256,7 +247,6 @@ public class Service implements IService {
 				}
 				return null;
 			}
-			HistoricoGPSHome historicoHome = new HistoricoGPSHome();
 			// Creamos una respuesta para cada elemento de la lista de recursos
 			String[] respuesta = new String[listaRecursos.length];
 			Date inicio = null, fin = null;
@@ -268,7 +258,7 @@ public class Service implements IService {
 			}
 			int i = 0;
 			for (String recurso : listaRecursos) {
-				List<HistoricoGPS> historico = historicoHome
+				List<HistoricoGPS> historico = HistoricoGPSConsultas
 						.getPosicionesEnIntervalo(recurso, inicio, fin);
 				if (historico.size() > 0) {
 					GPXGenerator generator = new GPXGenerator(recurso);
@@ -327,7 +317,6 @@ public class Service implements IService {
 				}
 				return null;
 			}
-			HistoricoGPSHome historicoHome = new HistoricoGPSHome();
 			// Creamos una respuesta para cada elemento de la lista de recursos
 			String[] respuesta = new String[listaRecursos.length];
 			Date inicio = null, fin = null;
@@ -339,7 +328,7 @@ public class Service implements IService {
 			}
 			int i = 0;
 			for (String recurso : listaRecursos) {
-				List<HistoricoGPS> historico = historicoHome
+				List<HistoricoGPS> historico = HistoricoGPSConsultas
 						.getPosicionesEnIntervaloSoloBBDD(recurso, inicio, fin);
 				if (historico.size() > 0) {
 					GPXGenerator generator = new GPXGenerator(recurso);
@@ -374,9 +363,7 @@ public class Service implements IService {
 		}
 
 		try {
-			HistoricoGPSHome historicoHome = new HistoricoGPSHome();
-
-			Posicion[] ultimasPosiciones = historicoHome
+			Posicion[] ultimasPosiciones = HistoricoGPSConsultas
 					.getUltimasPosiciones(idRecursos);
 			LOG.info("Ultimas posiciones: "
 					+ Arrays.toString(ultimasPosiciones));
@@ -400,8 +387,7 @@ public class Service implements IService {
 					.toString(idIncidencias));
 		}
 		try {
-			HistoricoGPSHome historicoHome = new HistoricoGPSHome();
-			Posicion[] ultimasPosiciones = historicoHome
+			Posicion[] ultimasPosiciones = HistoricoGPSConsultas
 					.getPosicionesIncidencias(idIncidencias);
 
 			return ultimasPosiciones;

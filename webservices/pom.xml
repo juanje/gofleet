@@ -12,7 +12,7 @@
 	</parent>
 
 	<groupId>org.gofleet</groupId>
-	<artifactId>${projectname}webservices</artifactId>
+	<artifactId>${projectname}-webservices</artifactId>
 	<name>webservice</name>
 	<version>1.0-SNAPSHOT</version>
 	<description>${projectname} WebService</description>
@@ -23,6 +23,10 @@
 			<id>gofleet</id>
 			<url>http://gis.emergya.info/nexus/content/repositories/gofleet</url>
 		</snapshotRepository>
+                <repository>
+                        <id>gofleet</id>
+                        <url>http://gis.emergya.info/nexus/content/repositories/gofleet</url>
+                </repository>
 	</distributionManagement>
 
 	<build>
@@ -225,7 +229,7 @@
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>core</artifactId>
-			<version>${project.parent.version}</version>
+			<version>0.0.0.1</version>
 		</dependency>
 		<!-- geoespatial -->
 		<dependency>
