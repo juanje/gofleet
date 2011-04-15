@@ -113,15 +113,15 @@ public final class Main extends Loader {
 		// Mapas
 		FleetControlMapViewer fleetcontrol = new FleetControlMapViewer(
 				Internacionalization.getString("Main.FleetControl"),
-				PluginType.GPS, 1, "tab_icon_controlflota");
+				PluginType.getType("GPS"), 1, "tab_icon_controlflota");
 		container.addPlugin(fleetcontrol);
 		container.addPlugin(new HistoryMapViewer(Internacionalization
-				.getString("Main.History"), PluginType.GPS, 2,
+				.getString("Main.GPS"), PluginType.getType("GPS"), 2,
 				"tab_icon_historico"));
 
 		// Administracion
 		final Tab administracion = new Tab(Internacionalization
-				.getString("Main.Administration"), PluginType.ADMIN, 2,
+				.getString("Main.Administration"), PluginType.getType("ADMIN"), 2,
 				"tab_icon_administracion", Color.LIGHT_GRAY);
 		administracion.setDetachable(true);
 		container.addPlugin(administracion);
@@ -140,7 +140,7 @@ public final class Main extends Loader {
 
 		// Listados
 		final Tab listados = new Tab(Internacionalization
-				.getString("Main.Listados"), PluginType.LIST, 3,
+				.getString("Main.Listados"), PluginType.getType("LIST"), 3,
 				"tab_icon_listados", Color.LIGHT_GRAY);
 		listados.setDetachable(true);
 		container.addPlugin(listados);
@@ -149,7 +149,7 @@ public final class Main extends Loader {
 
 		// Formularios
 		final Tab formularios = new Tab(Internacionalization
-				.getString("Main.Formularios"), PluginType.FORMS, 3,
+				.getString("Main.Formularios"), PluginType.getType("FORMS"), 3,
 				"tab_icon_formularios", Color.LIGHT_GRAY);
 		formularios.setDetachable(true);
 		container.addPlugin(formularios);

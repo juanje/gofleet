@@ -65,7 +65,7 @@ public class AdminResources extends Option {
 	private Recurso lastExample = new Recurso();
 
 	public AdminResources(int orden) {
-		super(getString("Resources.resources"), PluginType.ADMIN, orden,
+		super(getString("Resources.resources"), PluginType.getType("ADMIN"), orden,
 				"subtab_icon_recursos", null);
 		resources = new AdminPanel(getString("admin.recursos.titulo"),
 				LogicConstants.getIcon(ICON), this);

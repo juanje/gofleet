@@ -67,7 +67,7 @@ public class AdminRoles extends Option {
     private Rol lastExample = new Rol();
 
     public AdminRoles(int orden) {
-        super(getString("Roles.roles"), PluginType.ADMIN, orden, //$NON-NLS-1$
+        super(getString("Roles.roles"), PluginType.getType("ADMIN"), orden, //$NON-NLS-1$
                 "subtab_icon_roles", null); //$NON-NLS-1$
         roles = new AdminPanel(
                 getString("admin.roles.titulo"), LogicConstants.getIcon(ICON), this); //$NON-NLS-1$

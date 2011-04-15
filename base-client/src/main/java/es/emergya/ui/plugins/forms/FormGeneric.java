@@ -77,7 +77,7 @@ public abstract class FormGeneric extends Option {
 	protected LinkedList<Component> componentes = new LinkedList<Component>();
 
 	public FormGeneric(String title, int order) {
-		super(getString(title, title), PluginType.FORMS, order, null);
+		super(getString(title, title), PluginType.getType("FORMS"), order, null);
 		generatePanel();
 	}
 

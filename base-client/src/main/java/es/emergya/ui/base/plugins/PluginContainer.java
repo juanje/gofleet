@@ -33,8 +33,9 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFrame;
 
@@ -95,8 +96,7 @@ public class PluginContainer extends AbstractPluggable {
 		this.add(getPane());
 		Collections.sort(this.plugins);
 
-		EnumMap<PluginType, List<AbstractPlugin>> options = new EnumMap<PluginType, List<AbstractPlugin>>(
-				PluginType.class);
+		Map<PluginType, List<AbstractPlugin>> options = new HashMap<PluginType, List<AbstractPlugin>>();
 		List<AbstractPluggable> tabs = new ArrayList<AbstractPluggable>();
 
 		for (AbstractPlugin plugin : this.plugins) {
@@ -145,7 +145,7 @@ public class PluginContainer extends AbstractPluggable {
 				}
 
 				// Deletes the admin tab if the user is not administrator
-				if (tab.getType().equals(PluginType.ADMIN)
+				if (PluginType.getType("ADMIN").equals(tab.getType())
 						&& !Authentication.isAdministrator()) {
 					getPane().remove(tab);
 				}
@@ -156,7 +156,7 @@ public class PluginContainer extends AbstractPluggable {
 	private boolean isAllowed(AbstractPluggable tab) {
 		Usuario u = Authentication.getUsuario();
 		boolean isAdmin = (u != null && u.getAdministrador());
-		return ((tab.type != PluginType.ADMIN) || isAdmin);
+		return (PluginType.getType("ADMIN").equals(tab.getType()) || isAdmin);
 	}
 
 	@Override

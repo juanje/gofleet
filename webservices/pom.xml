@@ -14,7 +14,7 @@
 	<groupId>org.gofleet</groupId>
 	<artifactId>${projectname}-webservices</artifactId>
 	<name>webservice</name>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<description>${projectname} WebService</description>
 	<packaging>war</packaging>
 
@@ -229,7 +229,7 @@
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>core</artifactId>
-			<version>0.0.0.1</version>
+			<version>0.0.1</version>
 		</dependency>
 		<!-- geoespatial -->
 		<dependency>

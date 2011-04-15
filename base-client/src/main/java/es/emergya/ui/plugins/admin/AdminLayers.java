@@ -90,7 +90,7 @@ public class AdminLayers extends Option {
     private CapaInformacion lastExample;
 
     public AdminLayers(int orden) {
-        super(getString("Layers.layers"), PluginType.ADMIN, orden,
+        super(getString("Layers.layers"), PluginType.getType("ADMIN"), orden,
                 "subtab_icon_capas", null);
         layers = new AdminPanel(getString("admin.capas.titulo"), LogicConstants.getIcon(ICON), this);
         layers.setColumnToReselect(2);

@@ -97,7 +97,7 @@ public class ListIncidences extends Option {
 	private HashMap<String, Incidencia> incidenciasMostradas = new HashMap<String, Incidencia>();
 
 	public ListIncidences(int orden) {
-		super(string, PluginType.LIST, orden, "subtab_icon_incidences", null);
+		super(string, PluginType.getType("LIST"), orden, "subtab_icon_incidences", null);
 
 		Object[] tmp = IncidenciaConsultas.getCategorias(true);
 		categorias = new String[tmp.length];

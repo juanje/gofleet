@@ -66,7 +66,7 @@ public class AdminFleets extends Option {
 	private Flota lastExample = new Flota();
 
 	public AdminFleets(int orden) {
-		super(getString("Fleets.subfleets"), PluginType.ADMIN, orden,
+		super(getString("Fleets.subfleets"), PluginType.getType("ADMIN"), orden,
 				"subtab_icon_subflotas", null);
 		flotas = new AdminPanel(getString("admin.flotas.titulo"),
 				LogicConstants.getIcon("tittlemanage_icon_subflotas"), this);

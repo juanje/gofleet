@@ -62,7 +62,7 @@ public class AdminUsers extends Option {
 	private Usuario lastExample = new Usuario();
 
 	public AdminUsers(int orden) {
-		super(getString("Users.users"), PluginType.ADMIN, orden,
+		super(getString("Users.users"), PluginType.getType("ADMIN"), orden,
 				"subtab_icon_usuarios", null);
 		usuarios = new AdminPanel(getString("admin.usuarios.titulo"),
 				LogicConstants.getIcon(ICON), this);

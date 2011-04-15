@@ -28,6 +28,62 @@
  */
 package es.emergya.ui.base.plugins;
 
-public enum PluginType {
-	GPS, MESSAGES, FORMS, BUTTON, ADMIN, LIST;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Properties;
+
+import org.apache.commons.logging.LogFactory;
+
+import es.emergya.tools.ExtensionClassLoader;
+
+public class PluginType implements Comparable<PluginType> {
+	final static private PluginTypeContainer ptc = new PluginTypeContainer();
+	String type = "UNKNOWN";
+
+	PluginType(String type) {
+		super();
+		this.type = type;
+	}
+
+	@Override
+	public int compareTo(PluginType o) {
+		return this.type.compareTo(o.type);
+	}
+
+	public static PluginType getType(String type){
+		return ptc.get(type);
+	}
+}
+
+class PluginTypeContainer extends HashMap<String, PluginType> {
+	private static final long serialVersionUID = -8773223245356383977L;
+
+	PluginTypeContainer() {
+		super();
+		// default
+		put("UNKNOWN", new PluginType("UNKNOWN"));
+		put("ADMIN", new PluginType("ADMIN"));
+		put("MAP", new PluginType("MAP"));
+
+		final ExtensionClassLoader ecl = new ExtensionClassLoader();
+		final Properties p = new Properties();
+		try {
+			InputStream resourceAsStream = ecl.getResourceAsStream("moduletypes");
+			if(resourceAsStream == null)
+				throw new NullPointerException("No se encontró el fichero de moduletypes");
+			p.load(resourceAsStream);
+			for (Object k : p.keySet()) {
+				put(k.toString(), new PluginType(k.toString()));
+			}
+		} catch (Exception e) {
+			LogFactory.getLog(PluginType.class).error(
+					"moduletypes file not found. Using default.");
+			put("MESSAGES", new PluginType("MESSAGES"));
+			put("FORMS", new PluginType("FORMS"));
+			put("BUTTON", new PluginType("BUTTON"));
+			put("LIST", new PluginType("LIST"));
+		}
+
+	}
 }

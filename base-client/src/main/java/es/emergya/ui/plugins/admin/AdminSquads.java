@@ -67,7 +67,7 @@ public class AdminSquads extends Option {
     private Patrulla lastExample = new Patrulla();
 
     public AdminSquads(int orden) {
-        super(getString("Squads.squads"), PluginType.ADMIN, orden,
+        super(getString("Squads.squads"), PluginType.getType("ADMIN"), orden,
                 "subtab_icon_patrullas", null);
         squads = new AdminPanel(getString("admin.patrullas.titulo"),
                 LogicConstants.getIcon(ICON), this);
