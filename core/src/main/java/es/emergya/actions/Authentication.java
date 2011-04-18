@@ -60,7 +60,7 @@ public class Authentication {
 	private static ClienteConectadoHome clienteConectadoHome;
 	static {
 		clienteConectadoHome = (ClienteConectadoHome) MyBeanFactory
-				.getBean("clienteConectadoHome");
+				.getBean("clienteHome");
 	}
 
 	// public static Long newId() {
