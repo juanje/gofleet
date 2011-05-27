@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:axis="http://axis2m.sf.net/schema/axis"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                        http://axis2m.sf.net/schema/axis http://axis2m.sf.net/schema/axis2m.xsd">
+                        
+	<bean id="RoutingService" class="org.axis2m.spring.beans.ServiceBean">
+		<property name="serviceName" value="RoutingService"/>
+		<property name="serviceBean" ref="routingServiceBean"/>		
+	</bean>
+	<bean id="routingServiceBean" class="org.gofleet.openLS.RoutingService" />
+
+	<bean id="GeoCodingService" class="org.axis2m.spring.beans.ServiceBean">
+		<property name="serviceName" value="GeoCodingService"/>
+		<property name="serviceBean" ref="geoCodingServiceBean"/>		
+	</bean>
+	<bean id="geoCodingServiceBean" class="org.gofleet.openLS.GeoCodingService" />
+</beans>
