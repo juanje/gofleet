@@ -141,8 +141,8 @@ public class CustomMapView extends MapView implements RotatableView,
 	 */
 	protected Marker follow;
 	/**
-	 * Hacer zoom a una distancia apropiada para que {@link CustomMapView#follow}
-	 * se vea
+	 * Hacer zoom a una distancia apropiada para que
+	 * {@link CustomMapView#follow} se vea
 	 */
 	protected boolean autoZoom = true;
 	/** Girar en la direccion en la que {@link CustomMapView#follow} se mueve */
@@ -293,6 +293,23 @@ public class CustomMapView extends MapView implements RotatableView,
 		addLayer(layer, showOnButtonList, 0);
 	}
 
+	@Override
+	public void removeLayer(Layer layer) {
+		super.removeLayer(layer);
+		int index = -1;
+
+		for (int i = 0; i < layerControls.size(); i++) {
+			if (layerControls.get(i).getActionCommand().equals(layer.name)) {
+				index = i;
+				break;
+			}
+		}
+
+		if (index != -1)
+			layerControls.remove(index);
+		layerControlPanel.updateUI();
+	}
+
 	/**
 	 * Añade una capa
 	 * 
@@ -312,9 +329,9 @@ public class CustomMapView extends MapView implements RotatableView,
 			zoomTo(center, zoom2Scale(zoomFactor));
 		}
 		if (showOnButtonList) {
-			JToggleButton b = new JToggleButton(layer.name, LogicConstants
-					.getIcon("capas_button_" + layer.name.toLowerCase()),
-					layer.visible);
+			JToggleButton b = new JToggleButton(layer.name,
+					LogicConstants.getIcon("capas_button_"
+							+ layer.name.toLowerCase()), layer.visible);
 			// b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			// b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setActionCommand(layer.name);
@@ -344,8 +361,8 @@ public class CustomMapView extends MapView implements RotatableView,
 			zoomTo(center, zoom2Scale(zoomFactor));
 		}
 		if (showOnButtonList) {
-			JToggleButton b = new JToggleButton(layer.name, LogicConstants
-					.getIcon(icon), layer.visible);
+			JToggleButton b = new JToggleButton(layer.name,
+					LogicConstants.getIcon(icon), layer.visible);
 			// b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			// b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setActionCommand(layer.name);
@@ -758,9 +775,8 @@ public class CustomMapView extends MapView implements RotatableView,
 	 * @return
 	 */
 	public double zoom2Scale(int zoom) {
-		return Math.max(world.east() / OsmMercator.falseEasting(zoom), world
-				.north()
-				/ OsmMercator.falseNorthing(zoom));
+		return Math.max(world.east() / OsmMercator.falseEasting(zoom),
+				world.north() / OsmMercator.falseNorthing(zoom));
 	}
 
 	public int getMinZoom() {
@@ -951,8 +967,8 @@ public class CustomMapView extends MapView implements RotatableView,
 			zoom = new JPanel(new BorderLayout());
 			zoom.setOpaque(false);
 			zoom.setLayout(new BoxLayout(zoom, BoxLayout.Y_AXIS));
-			JButton in = new JButton(LogicConstants
-					.getIcon("map_button_zoommas"));
+			JButton in = new JButton(
+					LogicConstants.getIcon("map_button_zoommas"));
 			in.addActionListener(new ActionListener() {
 
 				@Override
@@ -965,8 +981,8 @@ public class CustomMapView extends MapView implements RotatableView,
 			foo.setOpaque(false);
 			foo.add(new ZoomMapSlider(CustomMapView.this));
 			zoom.add(foo, BorderLayout.CENTER);
-			JButton out = new JButton(LogicConstants
-					.getIcon("map_button_zoommenos"));
+			JButton out = new JButton(
+					LogicConstants.getIcon("map_button_zoommenos"));
 			out.addActionListener(new ActionListener() {
 
 				@Override
@@ -979,7 +995,7 @@ public class CustomMapView extends MapView implements RotatableView,
 			zoom.setBounds(0, 10, 70, 270);
 
 			// controlPanel = new ControlPanel(CustomMapView.this);
-			//						
+			//
 			// add(controlPanel);
 			// controlPanel.setBounds(0, 0, getWidth(), 40);
 
@@ -1209,8 +1225,8 @@ public class CustomMapView extends MapView implements RotatableView,
 			w.attr.put("name", name);
 			w.attr.put("symbol", LogicConstants.get("DIRECTORIO_ICONOS_FLOTAS")
 					+ "/" + r.getFlotas().getJuegoIconos());
-//			w.attr.put("color", LogicConstants.get("COLOR_ESTADO_REC_"
-//					+ r.getEstadoEurocop().getId(), "#000000"));
+			// w.attr.put("color", LogicConstants.get("COLOR_ESTADO_REC_"
+			// + r.getEstadoEurocop().getId(), "#000000"));
 			if (peopleShowing && r.getTipo().equalsIgnoreCase(Recurso.PERSONA)) {
 				CustomMarker<String, Recurso> marker = new CustomMarker<String, Recurso>(
 						w, people, r.getIdentificador(), Type.RESOURCE);
@@ -1258,19 +1274,23 @@ public class CustomMapView extends MapView implements RotatableView,
 						LatLon latlon = new LatLon(centroid.getCoordinate().y,
 								centroid.getCoordinate().x);
 						WayPoint w = new WayPoint(latlon);
-						w.attr.put("name", i.getTitulo() + " ("
-								+ i.getPrioridad() + ")");
-						w.attr.put("symbol", LogicConstants.get(
-								"DIRECTORIO_ICONOS_INCIDENCIAS", "incidencia/")
-								+ "incidencia_"
-								+ i.getEstado().toString()
-								+ "_"
-								+ i.getCategoria().toString()
-								+ "_"
-								+ i.getPrioridad().toString());
-						w.attr.put("color", LogicConstants.get(
-								"COLOR_ESTADO_INC_" + i.getEstado().getId(),
-								"#000000"));
+						w.attr.put("name",
+								i.getTitulo() + " (" + i.getPrioridad() + ")");
+						w.attr.put(
+								"symbol",
+								LogicConstants.get(
+										"DIRECTORIO_ICONOS_INCIDENCIAS",
+										"incidencia/")
+										+ "incidencia_"
+										+ i.getEstado().toString()
+										+ "_"
+										+ i.getCategoria().toString()
+										+ "_"
+										+ i.getPrioridad().toString());
+						w.attr.put(
+								"color",
+								LogicConstants.get("COLOR_ESTADO_INC_"
+										+ i.getEstado().getId(), "#000000"));
 
 						CustomMarker<Long, Incidencia> marker = new CustomMarker<Long, Incidencia>(
 								w, layer, i.getId(), Type.INCIDENCE);

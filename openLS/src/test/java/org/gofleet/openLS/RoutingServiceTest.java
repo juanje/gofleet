@@ -33,6 +33,7 @@ import java.util.Random;
 
 import org.appfuse.dao.BaseDaoTestCase;
 import org.gofleet.bbdd.dao.StreetHome;
+import org.gofleet.openLS.bean.TSPPlan;
 import org.gofleet.openLS.exceptions.TSPException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,20 +50,24 @@ public class RoutingServiceTest extends BaseDaoTestCase {
 	@Test
 	public void testGetTravellingSalesmanPlanMinVehicle() throws TSPException {
 		int maxVehicles = random.nextInt(15) + 1;
-		Point[][] stops = new Point[maxVehicles][];
+
+		Point centroid = streetHome.getRandom().getThe_geom().getCentroid();
+
+		TSPPlan[] param = new TSPPlan[maxVehicles];
+
 		for (int j = 0; j < maxVehicles; j++) {
 			int i = random.nextInt(4) + 4;
-			stops[j] = new Point[i];
-			for (int k = 0; k < stops[j].length; k++) {
+			String[] stops = new String[i];
+			for (int k = 0; k < i; k++) {
 				Point p = streetHome.getRandom().getThe_geom().getCentroid();
-				stops[j][k] = p;
+				stops[k] = p.getCentroid().getX() + ","
+						+ p.getCentroid().getY() + "," + "Parada " + k;
 			}
+			param[j] = new TSPPlan(1d, -1d, null, stops, centroid);
 		}
-		Point centroid = streetHome.getRandom().getThe_geom().getCentroid();
-		assertNotNull(routingService.getTravellingSalesmanPlanMinVehicle(
-				maxVehicles, random.nextInt(100) + 100,
-				random.nextInt(100) + 100, stops, random.nextInt(10),
-				random.nextInt(12), centroid));
+		assertNotNull(routingService.getTravellingSalesmanPlanMinVehicle(param,
+				random.nextInt(100) + 100, random.nextInt(100) + 100,
+				random.nextInt(10), random.nextInt(12)));
 
 	}
 }

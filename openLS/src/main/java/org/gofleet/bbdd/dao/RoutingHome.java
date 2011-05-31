@@ -50,6 +50,7 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.io.WKTWriter;
 
 @Repository("routingHome")
 public class RoutingHome extends GenericDaoHibernate<Street, Long> {
@@ -95,7 +96,7 @@ public class RoutingHome extends GenericDaoHibernate<Street, Long> {
 	 * @param goal
 	 * @return
 	 */
-	@Transactional(readOnly = true, rollbackFor = Throwable.class)
+	@Transactional(readOnly = false, rollbackFor = Throwable.class)
 	private List<Long> shortest_path_shooting_star(final Long origin,
 			final Long goal) {
 		final List<Long> lista = new ArrayList<Long>();
@@ -305,12 +306,11 @@ public class RoutingHome extends GenericDaoHibernate<Street, Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public TSPPlan[] getTSP(Integer maxVehicles, Integer maxTiempo,
 			Point[][] stops, Integer timeSpentOnStop, Integer startTime,
-			Point origin) {
+			Point origin, TSPPlan[] res) {
 
-		TSPPlan[] res = new TSPPlan[maxVehicles];
 		try {
 			log.debug("getTSP(" + maxVehicles + ", " + maxTiempo + ", " + stops
 					+ ", " + timeSpentOnStop + ", " + startTime + ", " + origin
@@ -333,6 +333,7 @@ public class RoutingHome extends GenericDaoHibernate<Street, Long> {
 
 				String query = "DELETE FROM " + tmpTable;
 				currentSession.createSQLQuery(query).executeUpdate();
+				currentSession.flush();
 				List<Integer> stop_list = new LinkedList<Integer>();
 				// Generating stop points
 				for (Point stop : stops_) {
@@ -348,6 +349,7 @@ public class RoutingHome extends GenericDaoHibernate<Street, Long> {
 							+ edge_id + ")";
 					currentSession.createSQLQuery(query).executeUpdate();
 				}
+				currentSession.flush();
 
 				log.debug(stop_list);
 				// Now we calculate the route:
@@ -383,8 +385,103 @@ public class RoutingHome extends GenericDaoHibernate<Street, Long> {
 					Double distance = way.getLength();
 					Double time = (distance * speed_average + stops_.length
 							* timeSpentOnStop);
-					res[i++] = new TSPPlan(distance, time, way, stops_, origin);
+
+					res[i++].setDistance(distance);
+					res[i++].setOrigin(origin);
+					res[i++].setTime(time);
+					res[i++].setWay((new WKTWriter()).write(way));
 				}
+			}
+		} catch (Throwable t) {
+			log.error("Error computing TSP", t);
+		}
+		return res;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = false)
+	public TSPPlan getTSP(Integer maxTiempo,
+			Point[] stops, Integer timeSpentOnStop, Integer startTime,
+			Point origin, TSPPlan res) {
+
+		try {
+			log.debug("getTSP(" + ", " + maxTiempo + ", " + stops
+					+ ", " + timeSpentOnStop + ", " + startTime + ", " + origin
+					+ ")");
+			Integer origin_id = getEdge(origin).intValue();
+			Session currentSession = getSessionFactory().getCurrentSession();
+
+			LineString[] lineStrings2 = new LineString[0];
+			GeometryFactory factory = new GeometryFactory();
+			// Loop through every zone:
+			String tmpTable = "puntos";
+
+			List<Long> lista = new LinkedList<Long>();
+			// Creating temporary table for stop points
+			// String tmpTable = "puntos_" + System.currentTimeMillis();
+			// query = "CREATE TEMPORARY TABLE " + tmpTable
+			// + " (id INTEGER NOT NULL PRIMARY KEY)";
+			// currentSession.createSQLQuery(query).executeUpdate();
+
+			String query = "DELETE FROM " + tmpTable;
+			currentSession.createSQLQuery(query).executeUpdate();
+			currentSession.flush();
+			List<Integer> stop_list = new LinkedList<Integer>();
+			// Generating stop points
+			for (Point stop : stops) {
+				Integer edge_id = getEdge(stop);
+				if (edge_id != -1 && !stop_list.contains(edge_id)) {
+					stop_list.add(edge_id);
+				}
+			}
+
+			for (Integer edge_id : stop_list) {
+				log.info(edge_id);
+				query = "INSERT INTO " + tmpTable + " (id) VALUES (" + edge_id
+						+ ")";
+				currentSession.createSQLQuery(query).executeUpdate();
+			}
+			currentSession.flush();
+
+			log.debug(stop_list);
+			// Now we calculate the route:
+			CallableStatement consulta = currentSession.connection()
+					.prepareCall("{call gofleet_tsp(?,?,?,?)}");
+			consulta.setString(1, RoutingHome.table);
+			consulta.setString(2, "puntos");
+			consulta.setString(3, RoutingHome.id);
+			consulta.setInt(4, origin_id);
+			log.info("select * from gofleet_tsp(" + RoutingHome.table + ", "
+					+ tmpTable + ", " + RoutingHome.id + ", " + origin_id + ")");
+			ResultSet resultado = consulta.executeQuery();
+
+			while (resultado.next())
+				lista.add(resultado.getLong("edge"));
+
+			if (lista.size() != 0) {
+				List<MultiLineString> linestrings = (List<MultiLineString>) currentSession
+						.createCriteria(Street.class)
+						.setProjection(Projections.property("the_geom"))
+						.add(Restrictions.isNotNull("the_geom"))
+						.add(Restrictions.in(RoutingHome.id, lista)).list();
+
+				List<LineString> realLinestrings = new LinkedList<LineString>();
+				for (MultiLineString m : linestrings) {
+					for (int n = 0; n < m.getNumGeometries(); n++)
+						realLinestrings.add((LineString) m.getGeometryN(n));
+				}
+
+				LineString[] array = realLinestrings.toArray(lineStrings2);
+				MultiLineString way = new MultiLineString(array, factory);
+				Double distance = way.getLength() * 60 * 1852 / 1000;
+				Double time = (distance * speed_average + stops.length
+						* timeSpentOnStop);
+
+				res.setDistance(distance);
+				res.setOrigin(origin);
+				res.setTime(time);
+				res.setWay((new WKTWriter()).write(way));
+
 			}
 		} catch (Throwable t) {
 			log.error("Error computing TSP", t);

@@ -243,11 +243,14 @@
 			<url>http://snapshots.repository.codehaus.org/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	<dependencies>
-		<!--<dependency> <groupId>org.gofleet.module</groupId> <artifactId>dummy</artifactId> 
-			<version>1.0</version> </dependency> -->
+	<dependencies><!--
+		<dependency>
+			<groupId>org.gofleet.module</groupId>
+			<artifactId>routing</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
-		<!-- Librerias de mapas (JOSM) -->
+		--><!-- Librerias de mapas (JOSM) -->
 		<!-- parent and children -->
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>

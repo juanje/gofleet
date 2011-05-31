@@ -39,6 +39,7 @@ import java.util.Enumeration;
 import javax.swing.UIManager;
 
 import org.apache.commons.logging.LogFactory;
+import org.gofleet.module.routing.RoutingMap;
 import org.quartz.SchedulerException;
 
 import es.emergya.cliente.scheduler.jobs.UpdateAdminJob;
@@ -75,9 +76,9 @@ public final class Main extends Loader {
 			"UPDATE_LISTADOS_FREQUENCY", 10) * 1000;
 	private static final org.apache.commons.logging.Log LOG = LogFactory
 			.getLog(Main.class);
-	
+
 	static {
-		_this = new Main(); 
+		_this = new Main();
 	}
 
 	/** Constructor is private to avoid creating objects. */
@@ -112,17 +113,22 @@ public final class Main extends Loader {
 
 		// Mapas
 		FleetControlMapViewer fleetcontrol = new FleetControlMapViewer(
-				Internacionalization.getString("Main.FleetControl"),
+				Internacionalization.getString("Main.FleetControl", "Fleet Control"),
 				PluginType.getType("GPS"), 1, "tab_icon_controlflota");
 		container.addPlugin(fleetcontrol);
 		container.addPlugin(new HistoryMapViewer(Internacionalization
 				.getString("Main.GPS"), PluginType.getType("GPS"), 2,
 				"tab_icon_historico"));
+		RoutingMap routingMap = new RoutingMap(
+				Internacionalization.getString("Main.RoutePlanning", "Route Planning"),
+				PluginType.getType("GPS"), 1, "tab_icon_controlflota");
+		container.addPlugin(routingMap);
 
 		// Administracion
-		final Tab administracion = new Tab(Internacionalization
-				.getString("Main.Administration"), PluginType.getType("ADMIN"), 2,
-				"tab_icon_administracion", Color.LIGHT_GRAY);
+		final Tab administracion = new Tab(
+				Internacionalization.getString("Main.Administration"),
+				PluginType.getType("ADMIN"), 2, "tab_icon_administracion",
+				Color.LIGHT_GRAY);
 		administracion.setDetachable(true);
 		container.addPlugin(administracion);
 		final AdminFleets adminFleets = new AdminFleets(1);
@@ -139,18 +145,20 @@ public final class Main extends Loader {
 		container.addPlugin(adminLayers);
 
 		// Listados
-		final Tab listados = new Tab(Internacionalization
-				.getString("Main.Listados"), PluginType.getType("LIST"), 3,
-				"tab_icon_listados", Color.LIGHT_GRAY);
+		final Tab listados = new Tab(
+				Internacionalization.getString("Main.Listados"),
+				PluginType.getType("LIST"), 3, "tab_icon_listados",
+				Color.LIGHT_GRAY);
 		listados.setDetachable(true);
 		container.addPlugin(listados);
 		final ListIncidences listIncidences = new ListIncidences(1);
 		container.addPlugin(listIncidences);
 
 		// Formularios
-		final Tab formularios = new Tab(Internacionalization
-				.getString("Main.Formularios"), PluginType.getType("FORMS"), 3,
-				"tab_icon_formularios", Color.LIGHT_GRAY);
+		final Tab formularios = new Tab(
+				Internacionalization.getString("Main.Formularios"),
+				PluginType.getType("FORMS"), 3, "tab_icon_formularios",
+				Color.LIGHT_GRAY);
 		formularios.setDetachable(true);
 		container.addPlugin(formularios);
 		final FormIncidencia formulario = new FormIncidencia(1);
