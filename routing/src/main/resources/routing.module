@@ -1,0 +1,3 @@
+TITLE=Routing Module
+TYPE=MAP
+MAIN=org.gofleet.module.routing.RoutingMap
